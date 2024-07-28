@@ -1,0 +1,100 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  background-color: var(--background);
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.backdrop-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  /* -webkit-filter: blur(30px);
+  -moz-filter: blur(30px);
+  -ms-filter: blur(30px);
+  filter: blur(30px);
+  filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); */
+
+  /* animation: blur-in 1s forwards; Important */
+}
+
+/* Let's define an animation: */
+@keyframes blur-in {
+  from {
+    backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(2px);
+  }
+}
+
+.modal {
+  top: 0vh;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+
+  /* top: 10vh;
+  bottom: 10vh; */
+  /* max-height: 700px; */
+  /* height: 100vh; */
+
+  /* top: 10vh; */
+  /* bottom: 10vh; */
+  /* margin: auto; */
+  /* left: 5%; */
+  /* right: 5%; */
+  /* background-color: white; */
+  /* padding: 1rem; */
+  /* border-radius: 14px; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+  z-index: 300;
+  /* animation: slide-down 2300ms ease-out forwards; */
+}
+
+.exit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.content {
+  /* height: 100%; */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* @media (min-width: 768px) {
+  .modal {
+    width: 40rem;
+    left: calc(50% - 20rem);
+  }
+} */
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    /* transform: translateY(-3rem); */
+  }
+  to {
+    opacity: 1;
+    /* transform: translateY(0); */
+  }
+}

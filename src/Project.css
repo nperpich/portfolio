@@ -1,0 +1,208 @@
+.project {
+  width: 100%;
+  /* border: 1px solid yellow; */
+  position: relative;
+  height: auto;
+}
+
+.project-summary {
+  width: 40%;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  text-align: left;
+  z-index: 2;
+}
+
+.project-summary .title {
+  margin-bottom: 0px;
+}
+
+.project-summary .info {
+  margin-top: 0px;
+}
+
+.see-more-project {
+  /* padding: 0 5px; */
+  /* border: 1px solid var(--blueberry); */
+  border-radius: 30px;
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  z-index: 3;
+  margin-top: 5px;
+  /* color: var(--blueberry); */
+  color: rgb(201, 201, 201);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.caret-container {
+  border: 1px solid rgb(201, 201, 201);
+  height: 36px;
+  width: 36px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.img-container {
+  position: relative;
+  /* float: left; */
+  width: 75%;
+  /* top: -500px; */
+}
+.img-container.details {
+  position: relative;
+  /* float: left; */
+  width: 100%;
+  /* top: -500px; */
+}
+
+.img-container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  float: left;
+  /* background-color: #20c996d8; */
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--background-transparent)
+  );
+}
+.details.img-container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  float: left;
+
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--background-transparent)
+  );
+  animation: disappear 2s forwards;
+}
+
+.DDDDimage-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: #48477799; */
+  z-index: 12;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--background-transparent)
+  );
+  opacity: 1;
+
+  transition-property: opacity;
+  transition-duration: 0.6s;
+}
+
+.details {
+  /* animation: disappear 2s forwards; */
+}
+
+.project img {
+  /* position: relative; */
+  width: 100%;
+
+  /* height: 300px; */
+}
+
+@media (max-width: 768px) {
+  .project {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .project div {
+    position: relative;
+  }
+  .project-summary {
+    width: 100%;
+    top: 0;
+  }
+  .img-container {
+    width: 100%;
+  }
+  .img-container::after {
+    background-image: linear-gradient(60deg, #10142a, rgba(0, 0, 0, 0) 95%);
+  }
+  .details.img-container::after {
+    background-image: linear-gradient(60deg, #10142a, rgba(0, 0, 0, 0) 95%);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    /* transform: translateY(-3rem); */
+  }
+  to {
+    opacity: 0;
+    /* transform: translateY(0); */
+  }
+}
+
+.qr-code {
+  width: 150px;
+}
+.qr-code-new {
+  width: 150px;
+  height: 150px;
+
+  background: url('https://portfolio-nick-v2.s3.us-east-1.amazonaws.com/qr-code-dance.png?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJIMEYCIQDOZ%2FkrqTAPSCTvOVhfje%2F7FgYgF3dN4c%2BCn9tMs2gOwAIhAINiVbNzURpfljrQ49S95lYz86EmSTutTOcfD9UDXS5xKu0CCN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQARoMMzg1Mjg4MzQxNzYzIgwpz4X2ZFDdd93lkVcqwQJaVKq7WoNjFtnDXA7ORWnfk%2F0okuUofZuaZ7hZdnuHfeqoaAf2CB5LG1S3MTH%2FZmSbqwYp6yCf3amsZpn3xIEBy1ySVoRZryh3EQTE6UKsni0y1JU2L9YWUI8DHh7iF5RoVMObx8eTN3blAzQVabj7lkEWgsETWTZdjscaFGW4hQGhX6eGVJB9zjxXFa1nkzoF5OZJdZvh%2F8wlEMNU0RvC%2Bj%2F8XFfQpgt0uiz6wDIgFXGlBqVvX2UqKcybk1bb4gMlkvl8qVXtreAu1X8CQbXOEkWSXhyV%2Bj56%2FHvBxSuI5vZyrKTujZ%2F2GqNr%2FI%2F3FEtNEmTS3Is3BlOH7caJxtFgtS%2FLjccPi0hD4%2FlKhguTyQtXFnDPDmQQ%2FBt4zjmcQ%2BUanxzm1uYz2YClxCmsghKCKN3cLuGwj8FeQkCAENAdTbowgMLbtAY6sgIAsTf3ou0Alo%2FBBiU5eKGmXfcOOU5H9od2hI1vnqLIRHbB47GxqXVqWjV%2BrR5rLN16ieUIFSOejj7tDhfs1dTJDzxjInG21YuWJ1lHiaFn0uYszlyBUewvUU6OxjzNWis4SkW5YKxe1v68Cr%2BXETv0tKUraquir0p75MQeg%2B%2FeHyAM3s0ncb17zJQKeWi4WcDwavDdOXL8rrpPrRJgCTUA44dqmLHcX2d7CEkwifcStTfLMJEwl3gNX5D%2BAGolwIL7%2F%2Bv6mf73n%2FkZUkVxABaEcwd7m%2Bu4E%2BJ9df6i892PJ6lhy2izeit6L3BiDslFJQIG5%2FGsv6je%2BytNCQYHCbluZjipba4WN8OSr8S4i1oFlGc7WSYMb1i1wWlRVdEKxJneLHowfi5QJPmGp8NkkGQfXl4%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240716T221743Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAVTNHZREBWV2IEM53%2F20240716%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=649a3db5cb77572be3eca8ed36b8e46502e980c3b12598420013dd0f95ec9107'),
+    var(--sky-blue);
+  background-blend-mode: multiply;
+  background-size: 150px 150px;
+}
+
+/* .qr-code::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  float: left;
+  background: aqua;
+  background-blend-mode: multiply;
+} */
+
+.project-content {
+  opacity: 0;
+  animation: slide-down 300ms linear 0.3s forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(4rem);
+    /* transform: translateX(25%); */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    /* transform: translateX(0); */
+  }
+}

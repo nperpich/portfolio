@@ -1,0 +1,139 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.backdrop-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  /* -webkit-filter: blur(30px);
+  -moz-filter: blur(30px);
+  -ms-filter: blur(30px);
+  filter: blur(30px);
+  filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); */
+  animation: blur-in 1s forwards; /* Important */
+}
+
+/* Let's define an animation: */
+@keyframes blur-in {
+  from {
+    backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(2px);
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--background-light-gray);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
+  z-index: 300;
+  /* animation: slide-from-right-100 300ms ease-out forwards; */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.modal-fixed-height {
+  top: 10vh;
+  height: 80vh;
+  bottom: 10vh;
+}
+
+.modal-flexible-height {
+  top: 10vh;
+  min-height: 40vh;
+  max-height: 80vh;
+  height: fit-content;
+  /* bottom: 10vh; */
+}
+
+.exit-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    /* width: 40rem;
+    left: calc(50% - 20rem); */
+  }
+}
+
+@keyframes slide-from-right-100 {
+  from {
+    opacity: 1;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+.title {
+  font-size: 22px;
+}
+
+.back-arrow {
+  position: absolute;
+  left: 10px;
+}
+
+.content {
+  flex-grow: 1;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  /* grid-auto-columns:  */
+  /* grid-template-columns: 200px; */
+  grid-auto-rows: auto; /* Rows will automatically adjust their height based on content */
+  /* gap: 10px; Optional: Adds space between the grid items */
+  padding: 20px 5px 20px 20px; /* Optional: Adds padding around the container */
+}
+
+@media (max-width: 540px) {
+  .content {
+    flex-grow: 1;
+    overflow: scroll;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); */
+    grid-template-columns: 1fr 1fr;
+    /* grid-auto-columns:  */
+    /* grid-template-columns: 200px; */
+    grid-auto-rows: auto; /* Rows will automatically adjust their height based on content */
+    /* gap: 10px; Optional: Adds space between the grid items */
+    padding: 20px 5px 20px 20px; /* Optional: Adds padding around the container */
+  }
+}

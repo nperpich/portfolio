@@ -1,0 +1,23 @@
+footer {
+  margin-top: 35px;
+  width: 100%;
+  text-align: left;
+}
+
+.contact-me {
+  font-size: 32px;
+  color: var(--teal);
+  font-weight: bold;
+}
+
+.icon-container {
+  /* font-size: 50px; */
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.icon {
+  color: var(--rustic-blue);
+}
