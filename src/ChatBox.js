@@ -154,8 +154,8 @@ export default function ChatBox({ open, setOpen }) {
                   ></img>
                 )}
                 <motion.div
-                  initial={{ opacity: 0.5 }}
-                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0.5 }}
                   transition={{ duration: '3s' }}
                   key={`message-container-${index}`}
                   className="single-chat shared-message"
@@ -164,7 +164,7 @@ export default function ChatBox({ open, setOpen }) {
                       ? {}
                       : {
                           color: 'white',
-                          backgroundColor: 'var(--teal-darker)',
+                          backgroundColor: 'var(--sky-blue-darker)',
                         }
                   }
                 >
