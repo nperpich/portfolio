@@ -115,14 +115,18 @@ export default function ChatBox({ open, setOpen }) {
     >
       <Box sx={style} className="outer-container">
         <nav className="chat-header">
-          <img
-            className="me-chat-image"
-            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
-          ></img>
+          <div style={{ height: '55px', position: 'relative' }}>
+            <img
+              className="me-chat-image"
+              src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
+            ></img>
+            <div className="online-dot"></div>
+          </div>
+
           <div style={{ flexGrow: 1 }}>
-            <div>AI Nick</div>
+            <div>NickGPT</div>
             <div style={{ fontSize: '16px', fontWeight: 'normal' }}>
-              representative
+              AI representative
             </div>
           </div>
           <div className="exit-chat" onClick={handleClose}>

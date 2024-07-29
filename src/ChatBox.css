@@ -35,7 +35,8 @@ fieldset {
 }
 
 .chat-header {
-  background-color: var(--teal);
+  background-color: var(--sky-blue-darker);
+  /* background-color: var(--teal); */
   color: white;
   padding: 8px;
   height: 60px;
@@ -121,9 +122,20 @@ fieldset {
 
   margin: 5px; */
   background-color: var(--light-gray);
-  border: 2px solid var(--teal-darker);
-  color: var(--teal-darker);
+  border: 2px solid var(--sky-blue-darker);
+  color: var(--sky-blue-darker);
   font-weight: bold;
+}
+
+.online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  height: 12px;
+  aspect-ratio: 1;
+  background-color: #30cb61;
+  border: 3px solid var(--sky-blue-darker);
+  border-radius: 50%;
 }
 
 .chat-texfield {
