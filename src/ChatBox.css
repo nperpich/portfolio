@@ -55,6 +55,11 @@ fieldset {
   background-color: white;
 }
 
+.me-chat-image.smaller-image {
+  height: 35px;
+  margin-bottom: 7px;
+}
+
 .exit-chat {
   /* position: absolute;
   top: 10px;
@@ -63,7 +68,7 @@ fieldset {
 }
 
 .message-container {
-  background-color: rgb(232, 232, 232);
+  background-color: var(--light-gray);
   height: 200px;
   padding: 12px;
   width: 100%;
@@ -82,13 +87,23 @@ fieldset {
   align-items: flex-start;
 }
 
+.photo-message-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
 .single-chat {
   background-color: white;
   min-width: 125px;
   max-width: 225px;
+}
+
+.shared-message {
   padding: 10px;
   margin: 7px;
-  border-radius: 8px;
+  border-radius: 15px;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1); /* Custom shadow */
 }
 
@@ -101,12 +116,12 @@ fieldset {
 }
 
 .prompt {
-  padding: 5px 7px;
+  /* padding: 5px 7px;
   border-radius: 15px;
 
-  margin: 5px;
-
-  border: 3px solid var(--teal-darker);
+  margin: 5px; */
+  background-color: var(--light-gray);
+  border: 2px solid var(--teal-darker);
   color: var(--teal-darker);
   font-weight: bold;
 }
@@ -122,5 +137,12 @@ fieldset {
     margin: 0;
     border: none;
     border-radius: 0;
+  }
+
+  .single-chat {
+    /* background-color: white; */
+    min-width: 125px;
+    max-width: 70%;
+    /* max-width: 300px; */
   }
 }

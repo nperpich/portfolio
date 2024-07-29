@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import Box from '@mui/material/Box';
 // import Button from '@mui/material/Button';
 // import Typography from '@mui/material/Typography';
+import { motion } from 'framer-motion';
 import Modal from '@mui/material/Modal';
 import './ChatBox.css';
 import {
@@ -48,7 +49,7 @@ export default function ChatBox({ open, setOpen }) {
 
   const [messages, setMessages] = useState([
     {
-      text: 'Hi! 👋 Ask me any question or click on one of the following prompts!',
+      text: 'Hi! 👋 Ask me any question or select one of the following prompts!',
       author: 'chatbot',
     },
   ]);
@@ -132,40 +133,66 @@ export default function ChatBox({ open, setOpen }) {
           <List className="chat-list">
             {messages.map((message, index) => (
               <div
-                key={index}
-                className="single-chat"
+                className="photo-message-container"
                 style={
                   message.author === 'chatbot'
-                    ? { alignSelf: 'flex-start' }
+                    ? { alignSelf: 'flex-start', justifyContent: 'flex-start' }
                     : {
                         alignSelf: 'flex-end',
-                        color: 'white',
-                        backgroundColor: 'var(--teal-darker)',
+                        justifyContent: 'flex-end',
                       }
                 }
               >
-                {message.text}
+                {message.author === 'chatbot' && (
+                  <img
+                    className="me-chat-image smaller-image"
+                    src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
+                  ></img>
+                )}
+                <motion.div
+                  initial={{ opacity: 0.5 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: '3s' }}
+                  key={`message-container-${index}`}
+                  className="single-chat shared-message"
+                  style={
+                    message.author === 'chatbot'
+                      ? {}
+                      : {
+                          color: 'white',
+                          backgroundColor: 'var(--teal-darker)',
+                        }
+                  }
+                >
+                  {message.text}
+                </motion.div>
               </div>
             ))}
             {chatLoading && (
-              <div
-                className="single-chat"
-                style={{
-                  minWidth: '50px',
-                  height: '15px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <TypingAnimation />
+              <div className="photo-message-container">
+                <img
+                  className="me-chat-image smaller-image"
+                  src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
+                ></img>
+                <div
+                  className="single-chat shared-message"
+                  style={{
+                    minWidth: '45px',
+                    height: '15px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <TypingAnimation />
+                </div>
               </div>
             )}
           </List>
           {messages.length <= 1 && (
             <div className="prompt-list">
               {interviewQuestions.map((prompt) => (
-                <div className="prompt" onClick={() => {}}>
+                <div className="prompt shared-message" onClick={() => {}}>
                   {prompt}
                 </div>
               ))}
@@ -181,8 +208,10 @@ export default function ChatBox({ open, setOpen }) {
             autoComplete="off"
             // focused
             sx={{ p: 1 }}
-            // style={{ color: 'green' }}
+            multiline
+            style={{ justifyContent: 'center' }}
             // variant=""
+
             variant="standard"
             // color="green"
             placeholder="Type a message"
@@ -197,6 +226,7 @@ export default function ChatBox({ open, setOpen }) {
               disableUnderline: true,
               classes: {
                 notchedOutline: 'fuuck',
+                // root: 'fuuck',
               },
             }}
           />
