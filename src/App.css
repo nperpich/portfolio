@@ -81,6 +81,7 @@ main {
   width: 100%;
   min-width: 400px;
   max-width: 600px;
+  aspect-ratio: 1;
   object-fit: contain;
 
   mask-image: linear-gradient(

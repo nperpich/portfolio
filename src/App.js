@@ -9,9 +9,11 @@ import Project from './Project';
 import Modal from './Modal';
 import OnLoadImage from './OnLoadImage';
 import Footer from './Footer';
+import ChatBox from './ChatBox';
 
 function App() {
   const [message, setMessage] = useState('');
+  const [openChat, setOpenChat] = useState(false);
 
   useEffect(() => {
     getMessage();
@@ -26,13 +28,18 @@ function App() {
 
   return (
     <>
+      <ChatBox open={openChat} setOpen={setOpenChat} />
       <div className="App">
         {/* {true && (
           <Modal>
             <p>fuck</p>
           </Modal>
         )} */}
-        <Header />
+        <Header
+          toggleChat={() => {
+            setOpenChat((prev) => !prev);
+          }}
+        />
 
         <main>
           <div className="pic-and-name">

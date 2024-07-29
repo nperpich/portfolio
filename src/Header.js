@@ -2,10 +2,10 @@ import React from 'react';
 import './Header.css';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 
-export default function Header() {
+export default function Header({ toggleChat }) {
   return (
     <header className="App-header">
-      <div className="chat-button sparkle">
+      <div className="chat-button sparkle" onClick={toggleChat}>
         <AutoAwesomeOutlinedIcon />
         <div>LIVE CHAT</div>
       </div>

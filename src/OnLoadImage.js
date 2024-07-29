@@ -20,13 +20,15 @@ export default function OnLoadImage({ src, className = '' }) {
   }, [imgEl]);
 
   return (
-    // <div className={className}>
-    <img
-      ref={imgEl}
-      style={loaded ? {} : { display: 'none' }}
-      src={src}
-      className={`${className} just-loaded`}
-    ></img>
-    // </div>
+    <>
+      <img
+        ref={imgEl}
+        //   style={loaded ? {} : { visibility: 'hidden' }}
+        style={loaded ? {} : { display: 'none' }}
+        src={src}
+        className={`${className} just-loaded`}
+      ></img>
+      {!loaded && <div className="portrait"></div>}
+    </>
   );
 }
