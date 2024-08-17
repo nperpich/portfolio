@@ -15,7 +15,7 @@ export default function Project() {
             setShowDetails(false);
           }}
         >
-          <div>
+          <div style={{ width: '100%', height: '100%' }}>
             <motion.div
               layoutId="project-pic"
               className="img-container details"

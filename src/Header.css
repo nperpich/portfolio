@@ -36,6 +36,10 @@ header {
 
 .chat-button {
   /* width: 100px; */
+
+  text-shadow: 0 0 5px var(--blueberry),
+    /* 0 0 10px var(--blueberry),  */ 0 0 15px var(--blueberry);
+
   overflow: hidden;
   position: relative;
   height: 50px;
@@ -58,10 +62,18 @@ header {
   transition-duration: 0.15s;
 }
 
+.mui-icon {
+  filter: drop-shadow(2px 2px 2px var(--blueberry));
+}
+.chat-button:hover .mui-icon {
+  filter: none;
+}
+
 .chat-button:hover {
   background-color: var(--teal);
   color: var(--background);
-  transform: scale(1.05);
+  /* transform: scale(1.05); */
+  text-shadow: none;
 }
 
 .chat-button.sparkle::after {

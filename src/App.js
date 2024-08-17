@@ -10,6 +10,7 @@ import Modal from './Modal';
 import OnLoadImage from './OnLoadImage';
 import Footer from './Footer';
 import ChatBox from './ChatBox';
+import ContactForm from './ContactForm';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -30,11 +31,6 @@ function App() {
     <>
       <ChatBox open={openChat} setOpen={setOpenChat} />
       <div className="App">
-        {/* {true && (
-          <Modal>
-            <p>fuck</p>
-          </Modal>
-        )} */}
         <Header
           toggleChat={() => {
             setOpenChat((prev) => !prev);
@@ -106,6 +102,7 @@ function App() {
               </h5>
             </div>
             <Project />
+            {/* <ContactForm /> */}
           </div>
           <Footer />
         </main>

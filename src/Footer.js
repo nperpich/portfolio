@@ -2,11 +2,12 @@ import React from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import './Footer.css';
+import ContactForm from './ContactForm';
 
 export default function Footer() {
   return (
     <footer>
-      <h2 className="contact-me">#Contact me</h2>
+      <ContactForm />
       <div className="icon-container">
         <a
           className="icon"
