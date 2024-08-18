@@ -10,19 +10,21 @@ const Backdrop = ({ onClose }) => {
 
 const ModalOverlay = ({ onClose, children }) => {
   return (
-    <main className={`${classes.modal}`}>
-      <div>{children}</div>
-
-      <button className={classes['exit-button']} onClick={onClose}>
-        <ArrowBackOutlinedIcon sx={{ color: 'white' }} />
-      </button>
-    </main>
+    <div className={`${classes.modal}`}>
+      <main>
+        {' '}
+        <div>{children}</div>
+        <button className={classes['exit-button']} onClick={onClose}>
+          <ArrowBackOutlinedIcon sx={{ color: 'white' }} />
+        </button>
+      </main>
+    </div>
   );
 };
 
 const portalElement = document.getElementById('modal');
 
-const Modal = ({ onModalClose, children }) => {
+const ModalFull = ({ onModalClose, children }) => {
   const handleUserKeyPress = (event) => {
     const { keyCode } = event;
     if (keyCode === 27) {
@@ -38,10 +40,10 @@ const Modal = ({ onModalClose, children }) => {
 
   return (
     <Fragment>
-      {ReactDOM.createPortal(
+      {/* {ReactDOM.createPortal(
         <Backdrop onClose={onModalClose} />,
         portalElement
-      )}
+      )} */}
       {ReactDOM.createPortal(
         <ModalOverlay onClose={onModalClose}>{children}</ModalOverlay>,
         portalElement
@@ -50,4 +52,4 @@ const Modal = ({ onModalClose, children }) => {
   );
 };
 
-export default Modal;
+export default ModalFull;
