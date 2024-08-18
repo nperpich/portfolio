@@ -20,6 +20,15 @@
   margin-top: 20px;
 }
 
+.chip-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  flex-wrap: wrap;
+
+  margin: 15px 0;
+}
+
 @media (max-width: 768px) {
   .experience-summary {
     color: var(--rustic-blue);

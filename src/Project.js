@@ -3,7 +3,7 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import './Project.css';
 import ModalFull from './ModalFull';
 import { motion } from 'framer-motion';
-import Experience from './Experience';
+import ProjectBlurb from './ProjectBlurb';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
@@ -67,14 +67,14 @@ export default function Project({ isMobile }) {
                     For the best experience, scan the following code with a
                     mobile device 😁
                   </p>
-                  <div className="qr-div" style={{ position: 'relative' }}>
-                    {' '}
+
+                  <div className="phone-hand-container">
                     <img
                       // layoutId="project-pic"
-                      className="qr-code"
-                      style={{ width: '100%' }}
+                      className="phone-hand"
+                      // style={{ width: '100%' }}
                       // className="gradient-overlay"
-                      src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/qr2.png"
+                      src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/qr-on-phone-1.png"
                     ></img>
                   </div>
                   <div style={{ flexGrow: 1 }} />
@@ -119,26 +119,47 @@ export default function Project({ isMobile }) {
             <div className="project-content">
               {/* <div className="qr-code-new"></div> */}
               <div className="experience-collection">
-                <Experience>
+                <ProjectBlurb>
                   {{
                     year: 'Frontend',
                     title: 'Fullstack Engineer',
-                    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur.`,
+                    text: [
+                      'asdfasdf',
+                      'Worked tirelessly to cut down on unnecessary re-renders',
+                    ],
+                    skills: [
+                      'HTML',
+                      'CSS',
+                      'JavaScript',
+                      'ReactJS',
+                      'Redux',
+                      'React Router',
+                      'Git',
+                      'Heroku',
+                    ],
                   }}
-                </Experience>
-                <Experience>
+                </ProjectBlurb>
+                <ProjectBlurb>
                   {{
                     year: 'Backend',
                     title: 'Senior Design Engineer',
-                    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur.`,
+                    text: [
+                      `Worked with AWS services to manage video uploads, from creating presigned-URLs, processing the videos with Elastic Transcoder, storing in S3 buckets and distributing using CloudFront. These process are automated together with the help of Lambda Functions`,
+                      `Uses HLS video format to drastically reduce the amount of data transfered. Allows for streaming discrete sections`,
+                    ],
+                    skills: [
+                      'Node.js',
+                      'Next.js',
+                      'Express.js',
+                      'MongoDB',
+                      'Postman',
+                      'AWS S3',
+                      'AWS CloudFront',
+                      'AWS Lambda Functions',
+                      'AWS Elastic Transcoder',
+                    ],
                   }}
-                </Experience>
+                </ProjectBlurb>
               </div>
             </div>
           </div>

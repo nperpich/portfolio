@@ -223,10 +223,25 @@
   align-items: center;
 }
 
+.qr-div {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
 .qr-div img {
   display: block;
   background-color: rgb(255, 0, 0);
   mix-blend-mode: multiply;
+  position: relative;
+  left: -3%;
+  width: 106%;
+  top: -3%;
+  height: 106%;
 }
 
 .qr-div::after {
@@ -236,8 +251,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--sky-blue-darker);
-  mix-blend-mode: screen;
+  /* background-color: var(--sky-blue-darkerer); */
+  /* mix-blend-mode: screen; */
   pointer-events: none; /* Allows the image to still be interactive */
 }
 
@@ -245,7 +260,7 @@
   font-weight: bold;
   color: var(--sky-blue-darker);
   /* margin-top: 10px; */
-  text-decoration: underline;
+  /* text-decoration: underline; */
   cursor: pointer;
 }
 
@@ -253,4 +268,26 @@
   position: absolute;
   top: 8px;
   right: 8px;
+}
+
+.phone-hand-container {
+  /* background-color: red; */
+  position: relative;
+  width: 100%;
+  height: 370px;
+  /* height: 420px; */
+  overflow: hidden;
+  margin: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.phone-hand {
+  width: 110%;
+  /* position: relative;
+  left: -62px;
+  top: -30px;
+  width: 500px; */
 }

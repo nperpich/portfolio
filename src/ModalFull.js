@@ -14,9 +14,10 @@ const ModalOverlay = ({ onClose, children }) => {
       <main>
         {' '}
         <div>{children}</div>
-        <button className={classes['exit-button']} onClick={onClose}>
-          <ArrowBackOutlinedIcon sx={{ color: 'white' }} />
-        </button>
+        <div className={classes['exit-button']} onClick={onClose}>
+          <ArrowBackOutlinedIcon style={{ fontSize: '30px' }} />
+          <div>Back </div>
+        </div>
       </main>
     </div>
   );

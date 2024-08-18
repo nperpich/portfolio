@@ -74,12 +74,18 @@
 
 .exit-button {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 5px;
+  right: 20px;
   font-size: 2rem;
   background: none;
   border: none;
   cursor: pointer;
+  color: var(--rustic-blue);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 .content {
