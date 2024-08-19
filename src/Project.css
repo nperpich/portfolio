@@ -273,6 +273,7 @@
 .phone-hand-container {
   /* background-color: red; */
   position: relative;
+  left: -25px;
   width: 100%;
   height: 370px;
   /* height: 420px; */

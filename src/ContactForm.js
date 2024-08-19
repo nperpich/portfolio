@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './ContactForm.module.css';
 import useInput from './useInput';
 import { TextField } from '@mui/material';
@@ -104,13 +104,16 @@ const AAAStyledTextField = styled(TextField)({
 });
 
 export default function ContactForm() {
+  const [submitError, setSubmitError] = useState(false);
+
   const {
     enteredValue: enteredName,
     hasError: nameHasError,
     onBlurHandler: nameBlurHandler,
     onChangeHandler: nameChangeHandler,
     isValidValue: enteredNameIsValid,
-  } = useInput((value) => value.includes('@'));
+    isTouched: nameIsTouched,
+  } = useInput((value) => value.includes('@'), submitError);
 
   const {
     enteredValue: enteredEmail,
@@ -118,7 +121,8 @@ export default function ContactForm() {
     onBlurHandler: emailBlurHandler,
     onChangeHandler: emailChangeHandler,
     isValidValue: enteredEmailIsValid,
-  } = useInput((value) => value.includes('@'));
+    isTouched: emailIsTouched,
+  } = useInput((value) => value.includes('@'), submitError);
 
   const {
     enteredValue: enteredMessage,
@@ -126,9 +130,27 @@ export default function ContactForm() {
     onBlurHandler: messageBlurHandler,
     onChangeHandler: messageChangeHandler,
     isValidValue: enteredMessageIsValid,
-  } = useInput((value) => value.length > 0);
+    isTouched: messageIsTouched,
+  } = useInput((value) => value.length > 0, submitError);
 
-  const formIsValid = enteredEmailIsValid;
+  const formIsValid = enteredEmailIsValid && enteredMessageIsValid;
+
+  function sendMessage() {
+    if (formIsValid) {
+      alert('submit!');
+    } else {
+      setSubmitError(true);
+      console.log('in the eles');
+      const helpers = document.querySelectorAll('.MuiFormHelperText-root');
+      helpers.forEach((el) => {
+        console.log(el);
+        el.classList.add(classes.shake);
+        setTimeout(() => {
+          el.classList.remove(classes.shake);
+        }, 600);
+      });
+    }
+  }
 
   return (
     <div className={classes['outer-container']}>
@@ -160,6 +182,10 @@ export default function ContactForm() {
         type="email"
         id="email"
         helperText={emailHasError && 'Not a valid email'}
+        // FormHelperTextProps={{
+        //   className: 'fuck',
+        //   // className: classes.customHelperText,
+        // }}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -201,7 +227,7 @@ export default function ContactForm() {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        type="submit"
+        onClick={sendMessage}
       >
         <SendIcon
           style={{ color: 'white', position: 'relative', left: '2px' }}

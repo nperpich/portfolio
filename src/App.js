@@ -91,20 +91,26 @@ function App() {
               {{
                 year: '2023-2024',
                 title: 'Fullstack Engineer',
-                text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                text: [
+                  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
             commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
             velit esse cillum dolore eu fugiat nulla pariatur.`,
+                ],
               }}
             </Experience>
             <Experience>
               {{
                 year: '2013-2020',
                 title: 'Senior Design Engineer',
-                text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur.`,
+                text: [
+                  ` Developed processes from the ground-up to take in (or reject) custom orders, sort them by key metrics, create custom tooling needed for each and manage the tooling inventory. Work with teams including Order Entry, CNC Team, Thermoforming Team, and Injection Foaming Teams`,
+                  `Performed Data Analysis on our custom orders to reduce the amount of tooling we had on hand and explore different methods of production`,
+                  `Developed multiple large-scale thermoforming mechanisms that were able to form custom sized showers, utilizing quick-change devices, custom heaters, pneumatics, large vacuum pressures, gearing, and interchangeable floors that were sized based on results from data analysis of previous custom orders over the years`,
+                  `Trained incoming engineers on our processes and expectations`,
+                  `Developed software to manage our unique processes to interact
+                  across multiple programs such as Excel, NetSuite, SolidWorks and Mastercam`,
+                ],
               }}
             </Experience>
           </div>
