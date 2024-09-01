@@ -123,6 +123,7 @@
 .project img {
   /* position: relative; */
   width: 100%;
+  aspect-ratio: 1.77;
 
   /* height: 300px; */
 }

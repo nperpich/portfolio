@@ -96,10 +96,10 @@ export default function Project({ isMobile }) {
               className="img-container details"
             >
               <motion.img
-                // layoutId="project-pic"
+                layoutId="project-pic-img"
                 style={{ width: '100%' }}
                 className="gradient-overlay"
-                src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/work-012x.jpg"
+                src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-2.png"
               ></motion.img>
               <motion.div
                 layoutId="image-filter"
@@ -168,14 +168,14 @@ export default function Project({ isMobile }) {
       <div className="project">
         <motion.div layoutId="project-pic" className="img-container">
           <motion.img
-            // layoutId="project-pic"
+            layoutId="project-pic-img"
             className="gradient-overlay"
-            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/work-012x.jpg"
+            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-2.png"
           ></motion.img>
-          <motion.div
+          {/* <motion.div
             layoutId="image-filter"
             className="image-filter"
-          ></motion.div>
+          ></motion.div> */}
         </motion.div>
 
         <div className="project-summary">
