@@ -51,7 +51,7 @@ export default function ProjectSummary({ isMobile }) {
           <motion.img
             layoutId="project-pic-img"
             className="gradient-overlay"
-            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-2.png"
+            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-3.png"
           ></motion.img>
           {/* <motion.div
             layoutId="image-filter"
@@ -62,7 +62,8 @@ export default function ProjectSummary({ isMobile }) {
         <div className="project-summary">
           <h3 className="title">#Dance</h3>
           <p className="info">
-            — Duis aute irure dolor in reprehenderit in voluptate velit esse.
+            — A video service for dance studios that allows for easy indexing
+            and practice tools
           </p>
         </div>
         <div

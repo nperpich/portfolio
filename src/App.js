@@ -93,10 +93,8 @@ function App() {
                 year: '2023-2024',
                 title: 'Fullstack Engineer',
                 text: [
-                  `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur.`,
+                  `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python`,
+                  `Has worked with SQL and NoSQL (specificly MongoDB)`,
                 ],
               }}
             </Experience>
@@ -118,10 +116,10 @@ function App() {
           <div className="project-outer-container">
             <div className="projects-intro">
               <h2 className="title">#Latest Work</h2>
-              <h5 className="info">
+              {/* <h5 className="info">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </h5>
+              </h5> */}
             </div>
 
             <ProjectSummary isMobile={isMobile} />

@@ -3,6 +3,7 @@
   /* border: 1px solid yellow; */
   position: relative;
   height: auto;
+  margin-bottom: 70px;
 }
 
 .project-summary {
@@ -16,6 +17,7 @@
 
 .project-summary .title {
   margin-bottom: 0px;
+  font-weight: bold;
 }
 
 .project-summary .info {
@@ -153,7 +155,10 @@
   color: var(--sky-blue);
   text-decoration: underline;
   cursor: pointer;
-  width: fit-content;
+  /* width: fit-content; */
+  width: 100%;
+  text-align: center;
+  margin: 40px 0;
 }
 
 @media (min-width: 769px) {

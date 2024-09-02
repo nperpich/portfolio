@@ -73,7 +73,7 @@ export default function Experience({ children }) {
             setExpanded(true);
           }}
         >
-          See More
+          see more
         </div>
       )}
     </div>

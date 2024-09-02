@@ -187,6 +187,7 @@ main {
 }
 .info {
   color: var(--sky-blue);
+  margin: 20px 0 5px;
 }
 
 .project-outer-container {

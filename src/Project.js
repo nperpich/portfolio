@@ -82,7 +82,7 @@ export default function Project({ isMobile, close }) {
               layoutId="project-pic-img"
               style={{ width: '100%' }}
               className="gradient-overlay"
-              src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-2.png"
+              src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-3.png"
             ></motion.img>
             <motion.div className="project-title-overlay">
               Dance Library
