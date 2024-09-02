@@ -71,6 +71,7 @@ export default function ProjectSummary({ isMobile }) {
           onClick={() => {
             setShowDetails(true);
           }}
+          style={{ cursor: 'pointer' }}
         >
           <div>View work</div>
           <div className="caret-container">
@@ -90,6 +91,6 @@ export default function ProjectSummary({ isMobile }) {
   );
 }
 
-function openInNewTab(url) {
+export function openInNewTab(url) {
   window.open(url, '_blank').focus();
 }

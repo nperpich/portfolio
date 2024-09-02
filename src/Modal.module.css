@@ -78,7 +78,7 @@
   position: absolute;
   top: 5px;
   right: 20px;
-  font-size: 2rem;
+  font-size: 28px;
   background: none;
   border: none;
   cursor: pointer;
@@ -114,5 +114,23 @@
   to {
     opacity: 1;
     /* transform: translateY(0); */
+  }
+}
+
+.back-animation {
+  animation: slide-from-right 300ms linear 300ms forwards;
+  opacity: 0;
+}
+
+@keyframes slide-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(3rem);
+    /* transform: translateX(25%); */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    /* transform: translateX(0); */
   }
 }

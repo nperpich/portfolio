@@ -22,6 +22,8 @@ const style = {
   p: 4,
 };
 
+const danceWebsite = 'https://www.dancelearningspace.com/demo';
+
 export default function Project({ isMobile, close }) {
   const [showQRCode, setShowQRCode] = useState(false);
 
@@ -67,7 +69,7 @@ export default function Project({ isMobile, close }) {
                 <p
                   className="skip-qr"
                   onClick={() => {
-                    openInNewTab('https://www.dancelearningspace.com');
+                    openInNewTab(danceWebsite);
                   }}
                 >
                   continue without mobile
@@ -101,7 +103,7 @@ export default function Project({ isMobile, close }) {
               className="live-demo"
               onClick={() => {
                 if (isMobile) {
-                  openInNewTab('https://www.dancelearningspace.com');
+                  openInNewTab(danceWebsite);
                 } else setShowQRCode(true);
               }}
             >

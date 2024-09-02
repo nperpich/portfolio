@@ -14,7 +14,10 @@ const ModalOverlay = ({ onClose, children }) => {
       <main>
         {' '}
         <div>{children}</div>
-        <div className={classes['exit-button']} onClick={onClose}>
+        <div
+          className={`${classes['exit-button']} ${classes['back-animation']}`}
+          onClick={onClose}
+        >
           <ArrowBackOutlinedIcon style={{ fontSize: '30px' }} />
           <div>Back </div>
         </div>
