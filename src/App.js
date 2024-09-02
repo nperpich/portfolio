@@ -11,6 +11,7 @@ import OnLoadImage from './OnLoadImage';
 import Footer from './Footer';
 import ChatBox from './ChatBox';
 import ContactForm from './ContactForm';
+import ProjectSummary from './ProjectSummary';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -122,7 +123,8 @@ function App() {
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </h5>
             </div>
-            <Project isMobile={isMobile} />
+
+            <ProjectSummary isMobile={isMobile} />
             {/* <ContactForm /> */}
           </div>
           <Footer />

@@ -41,10 +41,10 @@ const ModalFull = ({ onModalClose, children }) => {
 
   return (
     <Fragment>
-      {/* {ReactDOM.createPortal(
+      {ReactDOM.createPortal(
         <Backdrop onClose={onModalClose} />,
         portalElement
-      )} */}
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay onClose={onModalClose}>{children}</ModalOverlay>,
         portalElement

@@ -4,9 +4,10 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 20;
+  z-index: 101;
   /* background-color: rgba(0, 0, 0, 0.75); */
   background-color: var(--background);
+  /* background-color: red; */
   animation: slide-down 300ms ease-out forwards;
 }
 
@@ -52,7 +53,7 @@
   right: 0;
   position: absolute; */
   z-index: 1000;
-  background-color: var(--background);
+  /* background-color: var(--background); */
 
   /* top: 10vh;
   bottom: 10vh; */
@@ -64,12 +65,13 @@
   /* margin: auto; */
   /* left: 5%; */
   /* right: 5%; */
+  opacity: 1;
   /* background-color: white; */
   /* padding: 1rem; */
   /* border-radius: 14px; */
   /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
   z-index: 300;
-  /* animation: slide-down 2300ms ease-out forwards; */
+  /* animation: slide-down 300ms ease-out forwards; */
 }
 
 .exit-button {
