@@ -62,7 +62,7 @@ export default function Project({ isMobile, close }) {
                     className="phone-hand"
                     // style={{ width: '100%' }}
                     // className="gradient-overlay"
-                    src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/qr-on-phone-1.png"
+                    src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/qr-on-phone-2.png"
                   ></img>
                 </div>
                 <div style={{ flexGrow: 1 }} />
