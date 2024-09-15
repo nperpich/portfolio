@@ -75,6 +75,7 @@
 }
 
 .exit-button {
+  margin-top: 5px;
   position: absolute;
   top: 5px;
   right: 20px;

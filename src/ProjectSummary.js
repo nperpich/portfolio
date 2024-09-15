@@ -60,7 +60,9 @@ export default function ProjectSummary({ isMobile }) {
         </motion.div>
 
         <div className="project-summary">
-          <h3 className="title">#Dance</h3>
+          <motion.div layoutId="proj-header" className="title">
+            #Dance Library
+          </motion.div>
           <p className="info">
             — A video service for dance studios that allows for easy indexing
             and practice tools

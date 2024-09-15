@@ -9,6 +9,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import MessageIcon from '@mui/icons-material/Message';
 import SendIcon from '@mui/icons-material/Send';
+import useFetchOnDemand from './useFetchOnDemand';
 // import { withStyles } from '@material-ui/core/styles';
 
 export const SendMessageButton = styled(Button)(({ theme }) => ({
@@ -135,9 +136,36 @@ export default function ContactForm() {
 
   const formIsValid = enteredEmailIsValid && enteredMessageIsValid;
 
+  const {
+    loading: sending,
+    error: error,
+    sendData: sendData,
+  } = useFetchOnDemand(
+    `${process.env.REACT_APP_BACKEND}/api/v1/chat/contactMessageEmail`,
+    (data) => {
+      // dispatch(authActions.login(data.data.user));
+      // navigateHandler();
+      alert('email successfully sent');
+    },
+    {
+      method: 'POST',
+      credentials: 'include', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: enteredName,
+        email: enteredEmail,
+        message: enteredMessage,
+      }),
+    },
+    [enteredName, enteredEmail, enteredMessage]
+  );
+
   function sendMessage() {
     if (formIsValid) {
-      alert('submit!');
+      sendData();
+      // alert('submit!');
     } else {
       setSubmitError(true);
       console.log('in the eles');

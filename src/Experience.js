@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import AnimateChangeInHeight from './AnimateChangeInHeight';
+import { motion } from 'framer-motion';
 import './Experience.css';
 
 export default function Experience({ children }) {
@@ -47,7 +49,7 @@ export default function Experience({ children }) {
   }, [expanded]);
 
   return (
-    <div className="experience-box">
+    <motion.div className="experience-box">
       <h2 className="title">{children.year}</h2>
       <h3 className="info"> {children.title}</h3>
       {/* <div className="experience-summary">
@@ -55,17 +57,19 @@ export default function Experience({ children }) {
           <p>{text}</p>
         ))}
       </div> */}
-      <div
-        ref={listRef}
-        className="list-container"
-        style={expanded ? { maxHeight: '1000px' } : {}}
-      >
-        <ul style={{ paddingLeft: '25px' }}>
-          {children.text.map((text) => (
-            <li className="experience-summary">{text}</li>
-          ))}
-        </ul>
-      </div>
+      <AnimateChangeInHeight>
+        <motion.div
+          ref={listRef}
+          className="list-container"
+          style={expanded ? { maxHeight: '1000px' } : {}}
+        >
+          <motion.ul style={{ paddingLeft: '25px', overflow: 'hidden' }}>
+            {children.text.map((text) => (
+              <li className="experience-summary">{text}</li>
+            ))}
+          </motion.ul>
+        </motion.div>
+      </AnimateChangeInHeight>
       {hiddenText && !expanded && (
         <div
           className="show-more"
@@ -76,7 +80,8 @@ export default function Experience({ children }) {
           see more
         </div>
       )}
-    </div>
+    </motion.div>
+    // </AnimateChangeInHeight>
   );
 }
 

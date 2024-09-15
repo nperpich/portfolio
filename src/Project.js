@@ -7,6 +7,8 @@ import ProjectBlurb from './ProjectBlurb';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
+import EastIcon from '@mui/icons-material/East';
+import WestIcon from '@mui/icons-material/West';
 
 const style = {
   position: 'absolute',
@@ -86,8 +88,11 @@ export default function Project({ isMobile, close }) {
               className="gradient-overlay"
               src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/dance-app-collage-3.png"
             ></motion.img>
-            <motion.div className="project-title-overlay">
-              Dance Library
+            <motion.div
+              // layoutId="proj-header"
+              className="project-title-overlay"
+            >
+              #Dance Library
             </motion.div>
             <motion.div
               layoutId="image-filter"
@@ -96,18 +101,33 @@ export default function Project({ isMobile, close }) {
           </motion.div>
           <div className="project-content">
             {/* <div className="qr-code-new"></div> */}
-            <motion.div className="project-title-outside">
-              Dance Library
+            <motion.div
+              // layoutId="proj-header"
+              className="project-title-outside"
+            >
+              #Dance Library
             </motion.div>
             <div
-              className="live-demo"
-              onClick={() => {
-                if (isMobile) {
-                  openInNewTab(danceWebsite);
-                } else setShowQRCode(true);
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '10px',
               }}
             >
-              LIVE DEMO
+              {/* <EastIcon style={{ color: 'var(--sky-blue)' }} /> */}
+              <div
+                className="live-demo"
+                onClick={() => {
+                  if (isMobile) {
+                    openInNewTab(danceWebsite);
+                  } else setShowQRCode(true);
+                }}
+              >
+                LIVE DEMO
+              </div>
+              {/* <WestIcon style={{ color: 'var(--sky-blue)' }} /> */}
             </div>
             <div className="experience-collection">
               <ProjectBlurb>
@@ -115,8 +135,8 @@ export default function Project({ isMobile, close }) {
                   year: 'Frontend',
                   title: 'Fullstack Engineer',
                   text: [
-                    'asdfasdf',
-                    'Worked tirelessly to cut down on unnecessary re-renders',
+                    'Created an appeasing design using modern design technique with smooth and natural transitions for an enjoyable experience',
+                    'Continuously refactoring code to reduce re-renders and to make easier to navigate',
                   ],
                   skills: [
                     'HTML',
@@ -127,6 +147,7 @@ export default function Project({ isMobile, close }) {
                     'React Router',
                     'Git',
                     'Heroku',
+                    'Framer-Motion',
                   ],
                 }}
               </ProjectBlurb>
@@ -137,6 +158,7 @@ export default function Project({ isMobile, close }) {
                   text: [
                     `Worked with AWS services to manage video uploads, from creating presigned-URLs, processing the videos with Elastic Transcoder, storing in S3 buckets and distributing using CloudFront. These process are automated together with the help of Lambda Functions`,
                     `Uses HLS video format to drastically reduce the amount of data transfered. Allows for streaming discrete sections`,
+                    `Uses automated email services for signing up new users`,
                   ],
                   skills: [
                     'Node.js',
@@ -148,6 +170,7 @@ export default function Project({ isMobile, close }) {
                     'AWS CloudFront',
                     'AWS Lambda Functions',
                     'AWS Elastic Transcoder',
+                    'SendGrid',
                   ],
                 }}
               </ProjectBlurb>

@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-      <ChatBox open={openChat} setOpen={setOpenChat} />
+      {openChat && <ChatBox open={openChat} setOpen={setOpenChat} />}
       <div className="App">
         <Header
           toggleChat={() => {
@@ -93,8 +93,8 @@ function App() {
                 year: '2023-2024',
                 title: 'Fullstack Engineer',
                 text: [
-                  `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python`,
-                  `Has worked with SQL and NoSQL (specificly MongoDB)`,
+                  `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python and has explored different fields in depth from computer vision to data analysis`,
+                  `Continuously learning in order to take advantage of all the tools available to make the most efficient app in both the front-end and back-end`,
                 ],
               }}
             </Experience>

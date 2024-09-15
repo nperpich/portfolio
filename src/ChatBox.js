@@ -112,6 +112,12 @@ export default function ChatBox({ open, setOpen }) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       className="chat-modal"
+      PaperProps={{
+        style: {
+          backgroundColor: 'transparent',
+          boxShadow: 'none',
+        },
+      }}
     >
       <Box sx={style} className="outer-container">
         <nav className="chat-header">

@@ -158,7 +158,7 @@
   text-decoration: underline;
   cursor: pointer;
   /* width: fit-content; */
-  width: 100%;
+  /* width: 100%; */
   text-align: center;
   margin: 40px 0;
 }
