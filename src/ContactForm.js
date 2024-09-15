@@ -105,6 +105,7 @@ const AAAStyledTextField = styled(TextField)({
 });
 
 export default function ContactForm() {
+  const [isSent, setIsSent] = useState(false);
   const [submitError, setSubmitError] = useState(false);
 
   const {
@@ -141,11 +142,13 @@ export default function ContactForm() {
     error: error,
     sendData: sendData,
   } = useFetchOnDemand(
-    `${process.env.REACT_APP_BACKEND}/api/v1/chat/contactMessageEmail`,
+    `https://api.dancelearningspace.com/api/v1/chat/contactMessageEmail`,
     (data) => {
       // dispatch(authActions.login(data.data.user));
       // navigateHandler();
-      alert('email successfully sent');
+
+      setIsSent(true);
+      // alert('email successfully sent');
     },
     {
       method: 'POST',
@@ -255,11 +258,20 @@ export default function ContactForm() {
           justifyContent: 'center',
           alignItems: 'center',
         }}
-        onClick={sendMessage}
+        onClick={() => {
+          if (isSent) return;
+          sendMessage();
+        }}
       >
-        <SendIcon
-          style={{ color: 'white', position: 'relative', left: '2px' }}
-        />
+        {isSent ? (
+          'Sent'
+        ) : error ? (
+          'Error 😢'
+        ) : (
+          <SendIcon
+            style={{ color: 'white', position: 'relative', left: '2px' }}
+          />
+        )}
       </SendMessageButton>
     </div>
   );
