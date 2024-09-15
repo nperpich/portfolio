@@ -1,12 +1,11 @@
 .outer-container {
-  /* width: 450px; */
-  min-width: 540px;
-  width: 50%;
-  /* max-width: 100%; */
+  /* min-width: 540px;
+  width: 50%; */
+
   padding: 20px;
   box-sizing: border-box;
   /* background-color: red; */
-  background-image: linear-gradient(180deg, #313960 0%, #11152b 100%);
+  /* background-image: linear-gradient(180deg, #313960 0%, #11152b 100%); */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -65,4 +64,68 @@ input:-webkit-autofill:active {
 
 .shake {
   animation: shake 0.5s ease-in-out;
+}
+
+.flip-card-inner {
+  height: fit-content;
+  /* position: relative; */
+  position: relative;
+  /* width: 100%;
+  height: 100%; */
+  /* text-align: center; */
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  /* width: 100%;
+  height: 100%; */
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flip-card-front {
+  position: relative;
+  background-image: linear-gradient(180deg, #313960 0%, #11152b 100%);
+}
+.flip-card-back {
+  position: absolute;
+  background-color: var(--teal);
+  color: #313960;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  /* background-image: linear-gradient(180deg, #313960 0%, #11152b 100%); */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* font-weight: bold; */
+
+  transform: rotateY(180deg);
+}
+
+.fliiip {
+  transform: rotateY(180deg);
+}
+
+.flip-card {
+  /* min-width: 540px; */
+  width: 100%;
+  max-width: 540px;
+  height: fit-content;
+  /* background-color: transparent;
+  width: 100%; */
+  /* height: 200px; */
+  /* border: 1px solid #f1f1f1; */
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  /* min-height: 50px;
+  margin-bottom: 5px; */
 }

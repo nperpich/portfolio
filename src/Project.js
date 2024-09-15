@@ -92,7 +92,7 @@ export default function Project({ isMobile, close }) {
               // layoutId="proj-header"
               className="project-title-overlay"
             >
-              #Dance Library
+              Dance Library
             </motion.div>
             <motion.div
               layoutId="image-filter"
@@ -105,7 +105,7 @@ export default function Project({ isMobile, close }) {
               // layoutId="proj-header"
               className="project-title-outside"
             >
-              #Dance Library
+              Dance Library
             </motion.div>
             <div
               style={{
