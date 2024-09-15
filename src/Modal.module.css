@@ -7,6 +7,23 @@
   z-index: 101;
   /* background-color: rgba(0, 0, 0, 0.75); */
   background-color: var(--background);
+  /* opacity: 0.74; */
+  /* background-color: red; */
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.backdropTransparent {
+  /* pointer-events: all; */
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 7000;
+  /* opacity: 0.5; */
+  /* background-color: rgba(0, 0, 0, 0.75); */
+  background-color: var(--background-super-transparent);
   /* background-color: red; */
   animation: slide-down 300ms ease-out forwards;
 }
@@ -48,30 +65,24 @@
   position: fixed;
   overflow-y: scroll;
 
-  /* top: 0;
-  left: 0;
-  right: 0;
-  position: absolute; */
-  z-index: 1000;
-  /* background-color: var(--background); */
+  z-index: 9000;
 
-  /* top: 10vh;
-  bottom: 10vh; */
-  /* max-height: 700px; */
-  /* height: 100vh; */
-
-  /* top: 10vh; */
-  /* bottom: 10vh; */
-  /* margin: auto; */
-  /* left: 5%; */
-  /* right: 5%; */
   opacity: 1;
-  /* background-color: white; */
-  /* padding: 1rem; */
-  /* border-radius: 14px; */
-  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
-  z-index: 300;
-  /* animation: slide-down 300ms ease-out forwards; */
+}
+.modalUnfix {
+  /* top: 0;
+  right: 0; */
+  left: 0;
+  bottom: 0;
+  width: fit-content;
+  height: fit-content;
+
+  position: fixed;
+  overflow-y: scroll;
+
+  z-index: 9000;
+
+  opacity: 1;
 }
 
 .exit-button {
@@ -98,6 +109,17 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.contentUnfix {
+  /* width: fit-content;
+  height: fit-content; */
+  /* height: 100%; */
+  /* position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
 }
 
 /* @media (min-width: 768px) {

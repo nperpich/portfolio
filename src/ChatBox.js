@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react';
 // import Typography from '@mui/material/Typography';
 import { motion } from 'framer-motion';
 import Modal from '@mui/material/Modal';
+// import Modal from './Modal';
 import './ChatBox.css';
 import {
   Box,
@@ -107,6 +108,7 @@ export default function ChatBox({ open, setOpen }) {
 
   return (
     <Modal
+      // disablePortal
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
@@ -163,7 +165,7 @@ export default function ChatBox({ open, setOpen }) {
                     src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
                   ></img>
                 )}
-                <motion.div
+                <div
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 0.5 }}
                   transition={{ duration: '3s' }}
@@ -179,7 +181,7 @@ export default function ChatBox({ open, setOpen }) {
                   }
                 >
                   {message.text}
-                </motion.div>
+                </div>
               </div>
             ))}
             {chatLoading && (
