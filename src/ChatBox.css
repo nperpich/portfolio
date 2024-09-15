@@ -158,3 +158,12 @@ fieldset {
     /* max-width: 300px; */
   }
 }
+
+.under-contruction {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1001;
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
