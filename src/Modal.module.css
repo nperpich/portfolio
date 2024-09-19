@@ -65,7 +65,7 @@
   position: fixed;
   overflow-y: scroll;
 
-  z-index: 9000;
+  z-index: 102;
 
   opacity: 1;
 }
