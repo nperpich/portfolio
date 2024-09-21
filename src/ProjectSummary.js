@@ -64,8 +64,8 @@ export default function ProjectSummary({ isMobile }) {
             #Dance Library
           </motion.div>
           <p className="info">
-            — A video service for dance studios that allows for easy indexing
-            and practice tools
+            — A video service for dance studios that allows for easy indexing,
+            sharing, and various tools to practice
           </p>
         </div>
         <div

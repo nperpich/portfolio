@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer>
       <ContactForm />
-      <div className="icon-container">
+      {/* <div className="icon-container">
         <a
           className="icon"
           onClick={() => {
@@ -32,7 +32,7 @@ export default function Footer() {
         >
           <GitHubIcon fontSize="large" />
         </a>
-      </div>
+      </div> */}
     </footer>
   );
 }

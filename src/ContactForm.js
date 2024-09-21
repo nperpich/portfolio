@@ -10,6 +10,15 @@ import EmailIcon from '@mui/icons-material/Email';
 import MessageIcon from '@mui/icons-material/Message';
 import SendIcon from '@mui/icons-material/Send';
 import useFetchOnDemand from './useFetchOnDemand';
+import LoadingButton from '@mui/lab/LoadingButton';
+import ContactComponent from './ContactComponent';
+import { openInNewTab } from './ProjectSummary';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import HomeIcon from '@mui/icons-material/Home';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+// import './ContactComponent.css';
+// import EmailIcon from '@mui/icons-material/Email';
 // import { withStyles } from '@material-ui/core/styles';
 
 export const SendMessageButton = styled(Button)(({ theme }) => ({
@@ -107,6 +116,7 @@ const AAAStyledTextField = styled(TextField)({
 export default function ContactForm() {
   const [isSent, setIsSent] = useState(false);
   const [submitError, setSubmitError] = useState(false);
+  const [sendingTest, setSendingTest] = useState(false);
 
   const {
     enteredValue: enteredName,
@@ -168,6 +178,7 @@ export default function ContactForm() {
 
   function sendMessage() {
     if (formIsValid) {
+      setSendingTest(true);
       // if (true) {
 
       sendData();
@@ -187,136 +198,221 @@ export default function ContactForm() {
   }
 
   return (
-    <div className={`${classes['flip-card']}`}>
-      <div
-        className={`${classes['flip-card-inner']} ${
-          isSent ? classes['fliiip'] : ''
-        }`}
-      >
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        gap: '30px',
+        flexWrap: 'wrap',
+      }}
+    >
+      <div className={`${classes['flip-card']}`}>
         <div
-          className={`${classes['outer-container']} ${classes['flip-card-front']}`}
+          className={`${classes['flip-card-inner']} ${
+            isSent ? classes['fliiip'] : ''
+          }`}
         >
-          <h2 className="contact-me">Contact Me</h2>
-          <StyledTextField
-            variant="standard"
-            value={enteredName}
-            onBlur={nameBlurHandler}
-            onChange={nameChangeHandler}
-            type="text"
-            name="name"
-            placeholder="Name"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <AccountCircle style={{ color: 'var(--sky-blue-darker)' }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          {/* <br /> */}
-          {/* <input type="email" name="email" placeholder="Your Email" /> */}
-          <StyledTextField
-            variant="standard"
-            value={enteredEmail}
-            onBlur={emailBlurHandler}
-            onChange={emailChangeHandler}
-            placeholder="Email"
-            type="email"
-            id="email"
-            helperText={emailHasError && 'Not a valid email'}
-            // FormHelperTextProps={{
-            //   className: 'fuck',
-            //   // className: classes.customHelperText,
-            // }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <EmailIcon style={{ color: 'var(--sky-blue-darker)' }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-          <StyledTextField
-            multiline
-            variant="standard"
-            value={enteredMessage}
-            onBlur={messageBlurHandler}
-            onChange={messageChangeHandler}
-            placeholder="Message"
-            type="text"
-            id="message"
-            helperText={messageHasError && 'Please leave a message'}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <MessageIcon style={{ color: 'var(--sky-blue-darker)' }} />
-                </InputAdornment>
-              ),
-            }}
-          />
-
-          {/* <br /> */}
-          {/* <textarea name="comments" placeholder="Your Comments"></textarea> */}
-          {/* <br /> */}
-          <SendMessageButton
-            style={{
-              alignSelf: 'flex-end',
-              maxWidth: '50px',
-              minWidth: '50px',
-              aspectRatio: 1,
-              borderRadius: '50%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-            onClick={() => {
-              if (isSent) return;
-              sendMessage();
-            }}
+          <div
+            className={`${classes['outer-container']} ${classes['flip-card-front']}`}
           >
-            {isSent ? (
-              'Sent'
-            ) : error ? (
-              'Error 😢'
-            ) : (
-              <SendIcon
-                style={{ color: 'white', position: 'relative', left: '2px' }}
-              />
-            )}
-          </SendMessageButton>
-        </div>
-        <div
-          className={`${classes['outer-container']} ${classes['flip-card-back']}`}
+            <h2 className="contact-me">Contact Me</h2>
+            <StyledTextField
+              variant="standard"
+              value={enteredName}
+              onBlur={nameBlurHandler}
+              onChange={nameChangeHandler}
+              type="text"
+              name="name"
+              placeholder="Name"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle
+                      style={{ color: 'var(--sky-blue-darker)' }}
+                    />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {/* <br /> */}
+            {/* <input type="email" name="email" placeholder="Your Email" /> */}
+            <StyledTextField
+              variant="standard"
+              value={enteredEmail}
+              onBlur={emailBlurHandler}
+              onChange={emailChangeHandler}
+              placeholder="Email"
+              type="email"
+              id="email"
+              helperText={emailHasError && 'Not a valid email'}
+              // FormHelperTextProps={{
+              //   className: 'fuck',
+              //   // className: classes.customHelperText,
+              // }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon style={{ color: 'var(--sky-blue-darker)' }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <StyledTextField
+              multiline
+              variant="standard"
+              value={enteredMessage}
+              onBlur={messageBlurHandler}
+              onChange={messageChangeHandler}
+              placeholder="Message"
+              type="text"
+              id="message"
+              helperText={messageHasError && 'Please leave a message'}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MessageIcon style={{ color: 'var(--sky-blue-darker)' }} />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            {/* <br /> */}
+            {/* <textarea name="comments" placeholder="Your Comments"></textarea> */}
+            {/* <br /> */}
+            {/* <SendMessageButton
+              style={{
+                alignSelf: 'flex-end',
+                maxWidth: '50px',
+                minWidth: '50px',
+                aspectRatio: 1,
+                borderRadius: '50%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              onClick={() => {
+                if (isSent) return;
+                sendMessage();
+              }}
+            >
+              {isSent ? (
+                'Sent'
+              ) : error ? (
+                'Error 😢'
+              ) : (
+                <SendIcon
+                  style={{ color: 'white', position: 'relative', left: '2px' }}
+                />
+              )}
+            </SendMessageButton> */}
+            <LoadingButton
+              sx={{
+                height: '50px',
+                alignSelf: 'flex-end',
+                borderRadius: '25px',
+                backgroundColor: sendingTest
+                  ? 'yellow'
+                  : 'var(--sky-blue-darker)', // Change background color during loading
+
+                '&.Mui-disabled': {
+                  color: 'inherit', // Override color
+                  backgroundColor: 'transparent', // Override background color
+                  boxShadow: 'none', // Remove box-shadow
+                },
+              }}
+              onClick={() => {
+                if (isSent) return;
+                sendMessage();
+
+                // false &&
+                //   setTimeout(() => {
+                //     setSendingTest(false);
+                //   }, 2000);
+              }}
+              endIcon={<SendIcon />}
+              // loading={loading}
+              loading={sendingTest}
+              loadingPosition="end"
+              variant="contained"
+            >
+              Send
+            </LoadingButton>
+            {/* <button>F</button> */}
+          </div>
+          <div
+            className={`${classes['outer-container']} ${classes['flip-card-back']}`}
+          >
+            <h2 style={{ fontSize: '40px', margin: 0 }}>Sent!</h2>
+            <p style={{ margin: 0, textAlign: 'center' }}>
+              We will get back to you as soon as possible! Thank you for your
+              patience
+            </p>
+
+            {/* <SendMessageButton
+          style={{
+            position: 'absolute',
+            bottom: 0,
+
+            right: 0,
+          }}
+          onClick={() => {
+            if (isSent) return;
+            sendMessage();
+          }}
         >
-          <h2 style={{ fontSize: '40px', margin: 0 }}>Sent!</h2>
-          <p style={{ margin: 0, textAlign: 'center' }}>
-            We will get back to you as soon as possible! Thank you for your
-            patience
-          </p>
-
-          {/* <SendMessageButton
-            style={{
-              position: 'absolute',
-              bottom: 0,
-
-              right: 0,
-            }}
-            onClick={() => {
-              if (isSent) return;
-              sendMessage();
-            }}
-          >
-            {isSent ? (
-              'Sent'
-            ) : error ? (
-              'Error 😢'
-            ) : (
-              <SendIcon
-                style={{ color: 'white', position: 'relative', left: '2px' }}
-              />
-            )}
-          </SendMessageButton> */}
+          {isSent ? (
+            'Sent'
+          ) : error ? (
+            'Error 😢'
+          ) : (
+            <SendIcon
+              style={{ color: 'white', position: 'relative', left: '2px' }}
+            />
+          )}
+        </SendMessageButton> */}
+          </div>
         </div>
+      </div>
+      <div className={`${classes.myInfo}  contact-info-me`}>
+        {/* <h2 className="contact-me" style={{ color: 'var(--background)' }}>
+          Contact Me
+        </h2> */}
+        <ContactComponent
+          icon={<LocalPhoneIcon />}
+          text={
+            <a
+              href="tel:+16304337325"
+              // style={{ textDecoration: 'none', color: 'inherit' }}
+            >
+              +1-630-433-7325
+            </a>
+          }
+        />
+        <ContactComponent
+          icon={<EmailIcon />}
+          text={
+            <a href="mailto:nicholas.perpich@gmail.com">
+              nicholas.perpich@gmail.com
+            </a>
+          }
+        />
+        <ContactComponent icon={<HomeIcon />} text="Astoria Queens, NY" />
+        <ContactComponent
+          icon={<LinkedInIcon />}
+          text="LinkedIn"
+          clickHandler={() => {
+            openInNewTab(
+              'https://www.linkedin.com/in/nicholas-perpich-5241b228/'
+            );
+          }}
+        />
+        <ContactComponent
+          icon={<GitHubIcon />}
+          text="Github"
+          clickHandler={() => {
+            openInNewTab('https://github.com/nperpich');
+          }}
+        />
       </div>
     </div>
   );
