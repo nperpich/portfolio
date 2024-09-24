@@ -202,7 +202,7 @@ export default function ContactForm() {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        gap: '30px',
+        gap: '8%',
         flexWrap: 'wrap',
       }}
     >
@@ -382,6 +382,7 @@ export default function ContactForm() {
           text={
             <a
               href="tel:+16304337325"
+              // style={{ fontSize: 'inherit' }}
               // style={{ textDecoration: 'none', color: 'inherit' }}
             >
               +1-630-433-7325

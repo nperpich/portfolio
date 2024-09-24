@@ -3,6 +3,16 @@
   text-decoration: none;
 }
 
+.contact-info-me {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .contact-info-me {
+    font-size: 20px;
+  }
+}
+
 .contact-info-me a:hover {
   /* color: inherit; */
   text-decoration: underline;

@@ -9,6 +9,7 @@ export default function ContactComponent({ icon, text, clickHandler }) {
         flexDirection: 'row',
         alignItems: 'center',
         gap: '20px',
+        fontSize: 'inherit',
 
         // margin:
         cursor: clickHandler ? 'pointer' : undefined,
@@ -18,7 +19,7 @@ export default function ContactComponent({ icon, text, clickHandler }) {
       <div style={{ color: '' }}>{icon}</div>
       <div
         className={clickHandler ? 'text-holder' : undefined}
-        style={{ fontSize: '22px' }}
+        style={{ fontSize: 'inherit' }}
       >
         {text}
       </div>
