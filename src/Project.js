@@ -157,6 +157,7 @@ export default function Project({ isMobile, close }) {
                   title: 'Senior Design Engineer',
                   text: [
                     `Worked with AWS services to manage video uploads, from creating presigned-URLs, processing the videos with Elastic Transcoder, storing in S3 buckets and distributing using CloudFront. These process are automated together with the help of Lambda Functions`,
+                    `Strong knowledge of MongoDB including schema creation, post/pre-hooks, indexing for quick and resource-efficient queries, populates, and aggregation`,
                     `Uses HLS video format to drastically reduce the amount of data transfered. Allows for streaming discrete sections`,
                     `Uses automated email services for signing up new users`,
                   ],
