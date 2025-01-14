@@ -122,10 +122,10 @@ export default function ChatBox({ open, setOpen }) {
       }}
     >
       <Box sx={style} className="outer-container">
-        <img
+        {/* <img
           className="under-contruction"
           src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/537-5378667_under-construction-tape-png-clipart.png"
-        ></img>
+        ></img> */}
         <nav className="chat-header">
           <div style={{ height: '55px', position: 'relative' }}>
             <img
