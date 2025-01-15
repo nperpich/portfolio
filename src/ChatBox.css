@@ -1,3 +1,10 @@
+#chatbox {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 66;
+}
+
 .chat-modal {
   /* position: absolute;
   top: 25%;
@@ -21,6 +28,7 @@ fieldset {
 }
 
 .outer-container {
+  pointer-events: all;
   width: 400px;
   height: 600px;
   margin: 15px;

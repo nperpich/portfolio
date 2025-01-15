@@ -99,6 +99,7 @@ function App() {
       {openChat && <ChatBox open={openChat} setOpen={setOpenChat} />}
       {/* </AnimatePresence> */}
       <div className="App" ref={appContainer}>
+        {/* <div id="chatbox"></div> */}
         <Header
           toggleChat={() => {
             setOpenChat((prev) => !prev);

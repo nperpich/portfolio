@@ -24,8 +24,14 @@ const ModalOverlay = (props) => {
         ease: 'easeInOut',
       }}
       className={classes.modal}
+      style={{ pointerEvents: 'none' }}
     >
-      <div className={classes.content}>{props.children}</div>
+      <div
+        // style={{ display: 'inline-block' }}
+        className={classes.content}
+      >
+        {props.children}
+      </div>
     </motion.div>
   );
 };

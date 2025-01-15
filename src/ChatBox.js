@@ -51,19 +51,21 @@ export default function ChatBox({ open, setOpen }) {
 
   const [messages, setMessages] = useState([
     {
-      text: 'Hi! 👋 Ask me any question or select one of the following prompts!',
+      text: 'Hi! 👋  What burning questions do you have?',
+      // text: 'Hi! 👋 Ask me any question or select one of the following prompts!',
       author: 'chatbot',
     },
   ]);
   const [newMessage, setNewMessage] = useState('');
   const messageContainerRef = useRef(null);
+  const chatInputRef = useRef(null);
 
   const handleSendMessage = (prompt) => {
     if (newMessage.trim() !== '') {
       setMessages([...messages, { text: newMessage, author: 'user' }]);
       setNewMessage('');
       console.log('about to send chat');
-      sendChat();
+      // sendChat();
     }
   };
 
@@ -75,6 +77,20 @@ export default function ChatBox({ open, setOpen }) {
       });
     }
   }, [messages]);
+
+  useEffect(() => {
+    // if (chatInputRef.current) {
+    // const textInput = document.querySelector('.MuiInputBase-input');
+    chatInputRef?.current.focus();
+    // if (textInput) {
+    //   textInput.focus();
+    // }
+    // }
+  }, [newMessage]);
+
+  // useEffect(() => {
+  //   console.log({ newMessage });
+  // }, [newMessage]);
 
   const {
     loading: chatLoading,
@@ -222,6 +238,7 @@ export default function ChatBox({ open, setOpen }) {
         <Box sx={{ display: 'flex', gap: 0 }} className="chat-texfield">
           <TextField
             fullWidth
+            inputRef={chatInputRef}
             autoComplete="off"
             // focused
             sx={{ p: 1 }}
@@ -236,6 +253,7 @@ export default function ChatBox({ open, setOpen }) {
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === 'Enter') {
+                e.preventDefault();
                 handleSendMessage();
               }
             }}
