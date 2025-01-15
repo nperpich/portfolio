@@ -165,7 +165,7 @@ function App() {
               </Experience>
               <Experience>
                 {{
-                  year: '2013-2020',
+                  year: '2017-2023',
                   title: 'Senior Design Engineer',
                   text: [
                     ` Developed processes from the ground-up to take in (or reject) custom orders, sort them by key metrics, create custom tooling needed for each and manage the tooling inventory. Work with teams including Order Entry, CNC Team, Thermoforming Team, and Injection Foaming Teams`,
