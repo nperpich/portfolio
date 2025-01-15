@@ -130,14 +130,14 @@ export default function ChatBox({ open, setOpen, isMobile }) {
     if (!isMobile) return;
     const appElement = document.querySelector('.App');
     if (appElement) {
-      appElement.style.position = 'fixed';
+      // appElement.style.position = 'fixed';
       appElement.style.overflowY = 'hidden';
     }
 
     // Set overflow-y back to scroll when the component unmounts
     return () => {
       if (appElement) {
-        appElement.style.position = 'relative';
+        // appElement.style.position = 'relative';
         appElement.style.overflowY = 'scroll';
       }
     };
