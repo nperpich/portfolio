@@ -197,6 +197,7 @@ main {
 .project-outer-container {
   position: relative;
   /* z-index: 500; */
+  z-index: 55;
   width: 100%;
   /* border: 1px solid white; */
 }
