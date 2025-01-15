@@ -12,6 +12,7 @@ import Footer from './Footer';
 import ChatBox from './ChatBox';
 import ContactForm from './ContactForm';
 import ProjectSummary from './ProjectSummary';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const [message, setMessage] = useState('');
@@ -94,7 +95,9 @@ function App() {
 
   return (
     <>
+      {/* <AnimatePresence> */}
       {openChat && <ChatBox open={openChat} setOpen={setOpenChat} />}
+      {/* </AnimatePresence> */}
       <div className="App" ref={appContainer}>
         <Header
           toggleChat={() => {

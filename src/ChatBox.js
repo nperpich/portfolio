@@ -22,6 +22,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import { border } from '@mui/system';
 import useFetchOnDemand from './useFetchOnDemand';
 import TypingAnimation from './TypingAnimation';
+import ModalSimple from './ModalSimple';
 
 const style = {
   //   position: 'absolute',
@@ -109,7 +110,7 @@ export default function ChatBox({ open, setOpen }) {
   );
 
   return (
-    <Modal
+    <ModalSimple
       // disablePortal
       open={open}
       onClose={handleClose}
@@ -147,7 +148,7 @@ export default function ChatBox({ open, setOpen }) {
             <CloseIcon />
           </div>
         </nav>
-        <main ref={messageContainerRef} className="message-container">
+        <div ref={messageContainerRef} className="message-container">
           <List className="chat-list">
             {messages.map((message, index) => (
               <div
@@ -217,7 +218,7 @@ export default function ChatBox({ open, setOpen }) {
          
             </div>
           )} */}
-        </main>
+        </div>
         <Box sx={{ display: 'flex', gap: 0 }} className="chat-texfield">
           <TextField
             fullWidth
@@ -262,6 +263,6 @@ export default function ChatBox({ open, setOpen }) {
           </div>
         </Box>
       </Box>
-    </Modal>
+    </ModalSimple>
   );
 }
