@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import classes from './Modal.module.css';
@@ -8,21 +8,38 @@ import { motion } from 'framer-motion';
 //   return <div className={classes.backdrop} onClick={props.onClose}/>;
 // };
 
-const ModalOverlay = (props) => {
+const boxMotion = {
+  initial: {
+    y: '100%',
+  },
+  animate: {
+    y: 0,
+  },
+  exit: { y: '100%' },
+  transition: {
+    duration: 0.2, // Animation duration
+    ease: 'easeInOut',
+  },
+};
+
+const ModalOverlay = ({ children, isMobile }) => {
+  const passedProps = isMobile ? boxMotion : {};
+
+  useEffect(() => {
+    const otter = document.querySelector('#chatbox');
+    if (otter) {
+      otter.style.zIndex = 10000;
+    }
+  }, []);
+
   return (
     <motion.div
       key={`chatbox`}
-      initial={{
-        y: '100%',
-      }}
-      animate={{
-        y: 0,
-      }}
-      exit={{ y: '100%' }}
-      transition={{
-        duration: 0.2, // Animation duration
-        ease: 'easeInOut',
-      }}
+      {...passedProps}
+      //   initial={{
+      //     y: '100%',
+      //   }}
+
       className={classes.modal}
       style={{ pointerEvents: 'none' }}
     >
@@ -30,7 +47,7 @@ const ModalOverlay = (props) => {
         // style={{ display: 'inline-block' }}
         className={classes.content}
       >
-        {props.children}
+        {children}
       </div>
     </motion.div>
   );

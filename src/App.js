@@ -96,7 +96,9 @@ function App() {
   return (
     <>
       {/* <AnimatePresence> */}
-      {openChat && <ChatBox open={openChat} setOpen={setOpenChat} />}
+      {openChat && (
+        <ChatBox open={openChat} setOpen={setOpenChat} isMobile={isMobile} />
+      )}
       {/* </AnimatePresence> */}
       <div className="App" ref={appContainer}>
         {/* <div id="chatbox"></div> */}

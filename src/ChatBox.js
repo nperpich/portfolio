@@ -45,7 +45,7 @@ const interviewQuestions = [
 
 const backend = 'https://dance-vid-backend-1541fef8c031.herokuapp.com/';
 
-export default function ChatBox({ open, setOpen }) {
+export default function ChatBox({ open, setOpen, isMobile }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -65,7 +65,7 @@ export default function ChatBox({ open, setOpen }) {
       setMessages([...messages, { text: newMessage, author: 'user' }]);
       setNewMessage('');
       console.log('about to send chat');
-      // sendChat();
+      sendChat();
     }
   };
 
@@ -128,6 +128,7 @@ export default function ChatBox({ open, setOpen }) {
   return (
     <ModalSimple
       // disablePortal
+      isMobile={isMobile}
       open={open}
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
