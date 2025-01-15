@@ -125,6 +125,22 @@ export default function ChatBox({ open, setOpen, isMobile }) {
     [messages, newMessage]
   );
 
+  useEffect(() => {
+    // Set overflow-y to hidden when the component mounts
+    if (!isMobile) return;
+    const appElement = document.querySelector('.App');
+    if (appElement) {
+      appElement.style.overflowY = 'hidden';
+    }
+
+    // Set overflow-y back to scroll when the component unmounts
+    return () => {
+      if (appElement) {
+        appElement.style.overflowY = 'scroll';
+      }
+    };
+  }, []);
+
   return (
     <ModalSimple
       // disablePortal
