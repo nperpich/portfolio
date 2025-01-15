@@ -83,8 +83,10 @@ export default function ChatBox({ open, setOpen }) {
     `${backend}api/v1/chat`,
     (data) => {
       console.log({ data });
-      console.log(data.choices?.at(0)?.message?.content);
-      const answerText = data.choices?.at(0)?.message?.content;
+      // console.log(data.choices?.at(0)?.message?.content);
+      // const answerText = data.choices?.at(0)?.message?.content;
+      const messages = data.data;
+      const answerText = messages[messages.length - 1].content[0].text.value;
       if (answerText) {
         setMessages((prev) => [
           ...prev,

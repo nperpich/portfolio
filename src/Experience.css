@@ -1,5 +1,52 @@
+/* main {
+  position: relative;
+} */
+
+.App {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+main {
+  /* height: 100%;
+  overflow-y: scroll;
+  margin-bottom: 0; */
+}
+
 .experience-collection {
   margin-top: 35px;
+  /* width: 200px */
+  /* width: 300px;
+  height: 443px; */
+  flex-grow: 1;
+  /* position: relative; */
+}
+
+.pdf-container {
+  /* width: 400px; */
+  margin-top: 35px;
+  /* margin-bottom: 35px; */
+  position: relative;
+  /* top: 22px; */
+  pointer-events: none;
+}
+
+.abc {
+  position: fixed;
+  top: 100px;
+  /* top: 135px; */
+  /* right: 5%; */
+}
+
+.def {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.pdf-container-upper-level {
+  top: 0;
+  /* right: ; */
 }
 
 .experience-box {
@@ -42,7 +89,7 @@
 .show-more {
   text-align: center;
   color: var(--rustic-blue);
-
+  margin-top: 10px;
   font-weight: bold;
   cursor: pointer;
   opacity: 0.7;
@@ -56,5 +103,11 @@
     color: var(--rustic-blue);
     font-size: 16px;
     line-height: 1.5;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pdf-to-hide {
+    display: none;
   }
 }

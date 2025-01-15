@@ -402,9 +402,7 @@ export default function ContactForm() {
           icon={<LinkedInIcon />}
           text="LinkedIn"
           clickHandler={() => {
-            openInNewTab(
-              'https://www.linkedin.com/in/nicholas-perpich-5241b228/'
-            );
+            openInNewTab('https://www.linkedin.com/in/nick-perpich-5241b228/');
           }}
         />
         <ContactComponent

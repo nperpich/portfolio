@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,6 +15,9 @@ import ProjectSummary from './ProjectSummary';
 
 function App() {
   const [message, setMessage] = useState('');
+  const appContainer = useRef(null);
+  const pdfContainer = useRef(null);
+  const pdfOuterContainer = useRef(null);
   const [openChat, setOpenChat] = useState(false);
   const [isMobile, setIsMobile] = useState(() => {
     let check = false;
@@ -33,7 +36,53 @@ function App() {
   });
 
   useEffect(() => {
+    const childDiv = document.querySelector('.experience-holder'); // Replace with your child selector
+    const parentDiv = document.querySelector('main'); // Replace with your parent selector
+    // Get the top position of the child relative to the parent
+    const topRelativeToParent = childDiv.offsetTop - parentDiv.offsetTop;
+    console.log('Top relative to parent:', topRelativeToParent);
+  }, []);
+
+  useEffect(() => {
     getMessage();
+  }, []);
+
+  useEffect(() => {
+    // appContainer.current;
+
+    const handleScroll = () => {
+      const pdfRect = pdfOuterContainer.current.getBoundingClientRect(); // Get the bounding rectangle of the pdfContainer
+      const top = pdfRect.top;
+      const right = pdfRect.right;
+      const bottom = pdfRect.bottom;
+      const height = bottom - top;
+
+      // console.log({ top });
+      // Check if the top of pdfContainer is within the viewport
+      if (top <= 100) {
+        if (top + height - (620 + 5.5) <= 100 + 35) {
+          // pdfContainer.current.style.left = `${right}px`;
+          pdfContainer.current.classList.remove('abc');
+          // pdfContainer.current.classList.remove('pdf-container');
+          pdfContainer.current.classList.add('def');
+        } else {
+          pdfContainer.current.classList.add('abc');
+          pdfContainer.current.classList.remove('def');
+          // pdfContainer.current.style.right = 0;
+        }
+        // pdfContainer.current.classList.remove('abc');
+      } else {
+        pdfContainer.current.classList.remove('abc');
+        pdfContainer.current.classList.remove('def');
+      }
+    };
+
+    appContainer.current.addEventListener('scroll', handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      appContainer.current.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   async function getMessage() {
@@ -46,7 +95,7 @@ function App() {
   return (
     <>
       {openChat && <ChatBox open={openChat} setOpen={setOpenChat} />}
-      <div className="App">
+      <div className="App" ref={appContainer}>
         <Header
           toggleChat={() => {
             setOpenChat((prev) => !prev);
@@ -87,31 +136,69 @@ function App() {
             </div>
           </div>
 
-          <div className="experience-collection">
-            <Experience>
-              {{
-                year: '2023-2024',
-                title: 'Fullstack Engineer',
-                text: [
-                  `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python and has explored different fields in depth from computer vision to data analysis`,
-                  `Continuously learning in order to take advantage of all the tools available to make the most efficient app in both the front-end and back-end`,
-                ],
-              }}
-            </Experience>
-            <Experience>
-              {{
-                year: '2013-2020',
-                title: 'Senior Design Engineer',
-                text: [
-                  ` Developed processes from the ground-up to take in (or reject) custom orders, sort them by key metrics, create custom tooling needed for each and manage the tooling inventory. Work with teams including Order Entry, CNC Team, Thermoforming Team, and Injection Foaming Teams`,
-                  `Performed Data Analysis on our custom orders to reduce the amount of tooling we had on hand and explore different methods of production`,
-                  `Developed multiple large-scale thermoforming mechanisms that were able to form custom sized showers, utilizing quick-change devices, custom heaters, pneumatics, large vacuum pressures, gearing, and interchangeable floors that were sized based on results from data analysis of previous custom orders over the years`,
-                  `Trained incoming engineers on our processes and expectations`,
-                  `Developed software to manage our unique processes to interact
+          {/* <iframe
+            src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/Perpich_Fullstack_1208.pdf&embedded=true"
+            style="width:600px; height:500px;"
+            frameborder="0"
+          ></iframe> */}
+
+          <div
+            className="experience-holder"
+            ref={pdfOuterContainer}
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '30px',
+              position: 'relative',
+            }}
+          >
+            <div className="experience-collection">
+              <Experience>
+                {{
+                  year: '2023-2024',
+                  title: 'Fullstack Engineer',
+                  text: [
+                    `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python and has explored different fields in depth from computer vision to data analysis`,
+                    `Continuously learning in order to take advantage of all the tools available to make the most efficient app in both the front-end and back-end`,
+                  ],
+                }}
+              </Experience>
+              <Experience>
+                {{
+                  year: '2013-2020',
+                  title: 'Senior Design Engineer',
+                  text: [
+                    ` Developed processes from the ground-up to take in (or reject) custom orders, sort them by key metrics, create custom tooling needed for each and manage the tooling inventory. Work with teams including Order Entry, CNC Team, Thermoforming Team, and Injection Foaming Teams`,
+                    `Performed Data Analysis on our custom orders to reduce the amount of tooling we had on hand and explore different methods of production`,
+                    `Developed multiple large-scale thermoforming mechanisms that were able to form custom sized showers, utilizing quick-change devices, custom heaters, pneumatics, large vacuum pressures, gearing, and interchangeable floors that were sized based on results from data analysis of previous custom orders over the years`,
+                    `Trained incoming engineers on our processes and expectations`,
+                    `Developed software to manage our unique processes to interact
                   across multiple programs such as Excel, NetSuite, SolidWorks and Mastercam`,
-                ],
+                  ],
+                }}
+              </Experience>
+            </div>
+            <div
+              className="pdf-to-hide"
+              style={{
+                minWidth: '400px',
+                height: '100%',
+                // position: 'relative',
               }}
-            </Experience>
+            >
+              <div
+                ref={pdfContainer}
+                className="pdf-container"
+                // style={{ position: 'relative', top: '35px' }}
+              >
+                <object
+                  data="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/Perpich_Fullstack_1208.pdf"
+                  type="application/pdf"
+                  width="400px"
+                  height="620px"
+                ></object>
+              </div>
+            </div>
           </div>
           <div className="project-outer-container">
             <div className="projects-intro">
