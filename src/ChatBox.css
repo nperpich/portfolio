@@ -41,6 +41,14 @@ fieldset {
   border-radius: 12px;
   overflow: hidden;
 }
+.outer-container.mobile {
+  width: 100%;
+  /* height: 100%; */
+  height: 430px;
+  margin: 0;
+  border: none;
+  border-radius: 12px 12px 0 0;
+}
 
 .chat-header {
   background-color: var(--sky-blue-darker);
@@ -151,13 +159,13 @@ fieldset {
 }
 
 @media (max-width: 640px) {
-  .outer-container {
+  /* .outer-container {
     width: 100%;
     height: 100%;
     margin: 0;
     border: none;
     border-radius: 0;
-  }
+  } */
 
   .single-chat {
     /* background-color: white; */

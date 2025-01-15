@@ -141,7 +141,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
         },
       }}
     >
-      <Box sx={style} className="outer-container">
+      <Box sx={style} className={`outer-container ${isMobile ? 'mobile' : ''}`}>
         {/* <img
           className="under-contruction"
           src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/537-5378667_under-construction-tape-png-clipart.png"
@@ -162,7 +162,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
             </div>
           </div>
           <div className="exit-chat" onClick={handleClose}>
-            <CloseIcon />
+            <CloseIcon style={{ fontSize: '30px' }} />
           </div>
         </nav>
         <div ref={messageContainerRef} className="message-container">
@@ -249,7 +249,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
 
             variant="standard"
             // color="green"
-            placeholder="Type a message"
+            placeholder="Ask our chatbot"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             onKeyPress={(e) => {

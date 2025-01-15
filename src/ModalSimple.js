@@ -23,7 +23,7 @@ const boxMotion = {
 };
 
 const ModalOverlay = ({ children, isMobile }) => {
-  const passedProps = isMobile ? boxMotion : {};
+  const passedProps = isMobile || true ? boxMotion : {};
 
   useEffect(() => {
     const otter = document.querySelector('#chatbox');
