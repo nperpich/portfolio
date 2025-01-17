@@ -53,7 +53,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
 
   const [messages, setMessages] = useState([
     {
-      text: 'Hi! 👋  What burning questions do you have?',
+      text: 'Hi! 👋  What questions do you have for Nick?',
       // text: 'Hi! 👋 Ask me any question or select one of the following prompts!',
       author: 'chatbot',
     },
