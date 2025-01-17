@@ -8,8 +8,9 @@ header {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  gap: 15px;
 
-  padding: 0 5%;
+  padding: 0 3%;
   box-sizing: border-box;
 
   z-index: 100;
@@ -114,5 +115,25 @@ header {
     padding: 0 10px;
 
     font-size: 16px;
+  }
+}
+
+.pdf-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* max-width: 600px; */
+  /* width: 50%; */
+  height: 800px;
+  max-height: 100%;
+
+  aspect-ratio: 0.8;
+}
+
+@media (max-width: 480px) {
+  .pdf-modal {
+    padding-top: 90px;
+    height: 100%;
+    width: 100%;
   }
 }

@@ -161,8 +161,8 @@ function App() {
             <div className="experience-collection">
               <Experience>
                 {{
-                  year: '2023-2024',
-                  title: 'Fullstack Engineer',
+                  year: '2023-present',
+                  title: 'Full Stack Developer',
                   text: [
                     `Developed a strong interest in computer science while working as a Mechanical Engineer. Has continually explored different languages over the last 10 years from C++ to Python and has explored different fields in depth from computer vision to data analysis`,
                     `Continuously learning in order to take advantage of all the tools available to make the most efficient app in both the front-end and back-end`,
@@ -191,6 +191,9 @@ function App() {
                 height: '100%',
                 // position: 'relative',
               }}
+              // onClick={() => {
+              //   alert('cliiiickwd');
+              // }}
             >
               <div
                 ref={pdfContainer}

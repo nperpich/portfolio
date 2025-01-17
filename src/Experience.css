@@ -28,7 +28,7 @@ main {
   /* margin-bottom: 35px; */
   position: relative;
   /* top: 22px; */
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .abc {
@@ -57,7 +57,7 @@ main {
   text-align: left;
 }
 
-.experience-summary {
+.experience-box {
   color: var(--rustic-blue);
   font-size: 22px;
   line-height: 1.5;
@@ -89,17 +89,22 @@ main {
 .show-more {
   text-align: center;
   color: var(--rustic-blue);
-  margin-top: 10px;
+  margin-top: 20px;
   font-weight: bold;
   cursor: pointer;
   opacity: 0.7;
-  font-size: 18px;
+  font-size: inherit;
   position: relative;
   top: -10px;
 }
 
+.pdf-to-hide {
+  pointer-events: all;
+  z-index: 77;
+}
+
 @media (max-width: 768px) {
-  .experience-summary {
+  .experience-box {
     color: var(--rustic-blue);
     font-size: 16px;
     line-height: 1.5;

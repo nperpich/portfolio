@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // import { closeOutline } from 'ionicons/icons';
 import classes from './Modal.module.css';
 import { height } from '@mui/system';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Backdrop = ({ onClose }) => {
   return (
@@ -51,7 +52,7 @@ const ModalOverlay = ({
           onClick={onClose}
           style={{ color: xColor }}
         >
-          X
+          <CloseIcon color="white" style={{ fontSize: '40px' }} />
         </button>
       )}
     </div>

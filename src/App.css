@@ -193,6 +193,7 @@ main {
 }
 .info {
   color: var(--sky-blue);
+  font-size: 28px;
   margin: 20px 0 5px;
 }
 

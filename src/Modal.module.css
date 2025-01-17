@@ -22,8 +22,9 @@
   height: 100vh;
   z-index: 7000;
   /* opacity: 0.5; */
-  /* background-color: rgba(0, 0, 0, 0.75); */
-  background-color: var(--background-super-transparent);
+  background-color: rgba(0, 0, 0, 0.65);
+  /* background-color: var(--background-super-transparent); */
+
   /* background-color: red; */
   animation: slide-down 300ms ease-out forwards;
 }
@@ -65,7 +66,8 @@
   position: fixed;
   overflow-y: scroll;
 
-  z-index: 102;
+  /* z-index: 102; */
+  z-index: 7002;
 
   opacity: 1;
 }
@@ -109,6 +111,9 @@
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .contentUnfix {
