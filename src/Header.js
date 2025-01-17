@@ -5,7 +5,7 @@ import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
 import Modal from './Modal';
 
 export default function Header({ toggleChat }) {
-  const [showResume, setShowResume] = useState(true);
+  const [showResume, setShowResume] = useState(false);
   return (
     <>
       {showResume && (
