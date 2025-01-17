@@ -49,6 +49,8 @@ export default function ChatBox({ open, setOpen, isMobile }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const afterMount = useRef(false);
+
   const [messages, setMessages] = useState([
     {
       text: 'Hi! 👋  What burning questions do you have?',
@@ -81,7 +83,11 @@ export default function ChatBox({ open, setOpen, isMobile }) {
   useEffect(() => {
     // if (chatInputRef.current) {
     // const textInput = document.querySelector('.MuiInputBase-input');
-    chatInputRef?.current.focus();
+    if (!isMobile || afterMount.current) {
+      chatInputRef?.current.focus();
+    } else {
+      afterMount.current = true;
+    }
     // if (textInput) {
     //   textInput.focus();
     // }
