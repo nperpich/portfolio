@@ -27,17 +27,6 @@ import TypingAnimation from './TypingAnimation';
 import ModalSimple from './ModalSimple';
 import { useLocalStorage, useSessionStorage } from './useStorage';
 
-const style = {
-  //   position: 'absolute',
-  //   top: '50%',
-  //   left: '50%',
-  //   transform: 'translate(-50%, -50%)',
-  //   width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  //   p: 4,
-};
-
 const chatImage =
   'https://d2qxuoym2zs537.cloudfront.net/forPortfolio/robotChatIcon2.svg';
 // 'https://d2qxuoym2zs537.cloudfront.net/forPortfolio/me-fb-creation-1.png';
@@ -118,6 +107,15 @@ export default function ChatBox({ open, setOpen, isMobile }) {
     // }
     // }
   }, [newMessage]);
+
+  useEffect(() => {
+    if (expanded && messageContainerRef.current) {
+      messageContainerRef.current.scrollTo({
+        top: 100000,
+        // behavior: 'smooth',
+      });
+    }
+  }, [expanded]);
 
   // useEffect(() => {
   //   console.log({ newMessage });
@@ -251,46 +249,68 @@ export default function ChatBox({ open, setOpen, isMobile }) {
             </nav>
             <div ref={messageContainerRef} className="message-container">
               <List className="chat-list">
-                {messages.map((message, index) => (
-                  <div
-                    className="photo-message-container"
-                    style={
-                      message.author === 'chatbot'
-                        ? {
-                            alignSelf: 'flex-start',
-                            justifyContent: 'flex-start',
-                          }
-                        : {
-                            alignSelf: 'flex-end',
-                            justifyContent: 'flex-end',
-                          }
-                    }
-                  >
-                    {message.author === 'chatbot' && (
-                      <img
-                        className="me-chat-image smaller-image"
-                        src={chatImage}
-                      ></img>
-                    )}
+                {messages.map((message, index) => {
+                  const seachKey = '630-433-7325';
+                  const text = message.text;
+                  let messageHtml;
+                  const indexOfKeyword = text.indexOf(seachKey);
+                  if (indexOfKeyword === -1) {
+                    messageHtml = text;
+                  } else {
+                    // const theSpan =
+                    messageHtml = (
+                      <>
+                        <span>{text.slice(0, indexOfKeyword)}</span>
+                        {/* <span style={{ color: 'blue' }}>{seachKey}</span> */}
+                        <a href="tel:+16304337325">630-433-7325</a>
+                        <span>
+                          {text.slice(indexOfKeyword + seachKey.length)}
+                        </span>
+                      </>
+                    );
+                  }
+                  return (
                     <div
-                      initial={{ opacity: 1 }}
-                      animate={{ opacity: 0.5 }}
-                      transition={{ duration: '3s' }}
-                      key={`message-container-${index}`}
-                      className="single-chat shared-message"
+                      className="photo-message-container"
                       style={
                         message.author === 'chatbot'
-                          ? {}
+                          ? {
+                              alignSelf: 'flex-start',
+                              justifyContent: 'flex-start',
+                            }
                           : {
-                              color: 'white',
-                              backgroundColor: 'var(--teal)',
+                              alignSelf: 'flex-end',
+                              justifyContent: 'flex-end',
                             }
                       }
                     >
-                      {message.text}
+                      {message.author === 'chatbot' && (
+                        <img
+                          className="me-chat-image smaller-image"
+                          src={chatImage}
+                        ></img>
+                      )}
+                      <div
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 0.5 }}
+                        transition={{ duration: '3s' }}
+                        key={`message-container-${index}`}
+                        className="single-chat shared-message"
+                        style={
+                          message.author === 'chatbot'
+                            ? {}
+                            : {
+                                color: 'white',
+                                backgroundColor: 'var(--teal)',
+                              }
+                        }
+                      >
+                        {messageHtml}
+                        {/* <a href="tel:+16304337325">630-433-7325</a> */}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
                 {chatLoading && (
                   <div className="photo-message-container">
                     <motion.img
