@@ -25,6 +25,7 @@ import { border } from '@mui/system';
 import useFetchOnDemand from './useFetchOnDemand';
 import TypingAnimation from './TypingAnimation';
 import ModalSimple from './ModalSimple';
+import { useLocalStorage, useSessionStorage } from './useStorage';
 
 const style = {
   //   position: 'absolute',
@@ -68,6 +69,12 @@ export default function ChatBox({ open, setOpen, isMobile }) {
     },
   ]);
   const [newMessage, setNewMessage] = useState('');
+
+  const [threadId, setThreadId, removeThreadId] = useLocalStorage(
+    'chatThreadId',
+    ''
+  );
+  console.log({ threadId });
   const messageContainerRef = useRef(null);
   const chatInputRef = useRef(null);
 
@@ -79,6 +86,15 @@ export default function ChatBox({ open, setOpen, isMobile }) {
       sendChat();
     }
   };
+
+  useEffect(() => {
+    console.log('Effect ran');
+    return () => {
+      console.log('Cleanup ran');
+      // removeThreadId();
+      localStorage.removeItem('chatThreadId');
+    };
+  }, []);
 
   useEffect(() => {
     if (messageContainerRef.current) {
@@ -117,7 +133,11 @@ export default function ChatBox({ open, setOpen, isMobile }) {
       console.log({ data });
       // console.log(data.choices?.at(0)?.message?.content);
       // const answerText = data.choices?.at(0)?.message?.content;
-      const messages = data.data;
+      const messages = data.data.messages.body.data;
+      const threadIdReceived = data.data.threadId;
+      if (threadIdReceived !== threadId) {
+        setThreadId(threadIdReceived);
+      }
       const answerText = messages[messages.length - 1].content[0].text.value;
       if (answerText) {
         setMessages((prev) => [
@@ -135,27 +155,28 @@ export default function ChatBox({ open, setOpen, isMobile }) {
       //   body: 'what is the capitcal of the United States',
       body: JSON.stringify({
         question: newMessage,
+        threadId,
       }),
     },
     [messages, newMessage]
   );
 
-  useEffect(() => {
-    // Set overflow-y to hidden when the component mounts
-    // if (!isMobile) return;
-    // const appElement = document.querySelector('.App');
-    // if (appElement) {
-    //   // appElement.style.position = 'fixed';
-    //   appElement.style.overflowY = 'hidden';
-    // }
-    // // Set overflow-y back to scroll when the component unmounts
-    // return () => {
-    //   if (appElement) {
-    //     // appElement.style.position = 'relative';
-    //     appElement.style.overflowY = 'scroll';
-    //   }
-    // };
-  }, []);
+  // useEffect(() => {
+  //   // Set overflow-y to hidden when the component mounts
+  //   // if (!isMobile) return;
+  //   // const appElement = document.querySelector('.App');
+  //   // if (appElement) {
+  //   //   // appElement.style.position = 'fixed';
+  //   //   appElement.style.overflowY = 'hidden';
+  //   // }
+  //   // // Set overflow-y back to scroll when the component unmounts
+  //   // return () => {
+  //   //   if (appElement) {
+  //   //     // appElement.style.position = 'relative';
+  //   //     appElement.style.overflowY = 'scroll';
+  //   //   }
+  //   // };
+  // }, []);
 
   return (
     <ModalSimple
@@ -262,7 +283,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
                           ? {}
                           : {
                               color: 'white',
-                              backgroundColor: 'var(--sky-blue-darker)',
+                              backgroundColor: 'var(--teal)',
                             }
                       }
                     >
@@ -275,7 +296,7 @@ export default function ChatBox({ open, setOpen, isMobile }) {
                     <motion.img
                       layoutId="minimeForChat"
                       className="me-chat-image smaller-image"
-                      src="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/customer-service-img-2.png"
+                      src={chatImage}
                     ></motion.img>
                     <div
                       className="single-chat shared-message"
