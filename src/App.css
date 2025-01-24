@@ -190,11 +190,15 @@ main {
 
 .title {
   color: var(--teal);
+  /* font-size: 28px; */
 }
 .info {
   color: var(--sky-blue);
-  font-size: 28px;
   margin: 20px 0 5px;
+}
+
+.info.project-summary {
+  font-size: 28px;
 }
 
 .project-outer-container {
@@ -255,6 +259,13 @@ main {
   }
   h2 {
     font-size: 28px;
+  }
+
+  .project-summary.title {
+    font-size: 22px;
+  }
+  .project-summary.info {
+    font-size: 18px;
   }
 }
 
