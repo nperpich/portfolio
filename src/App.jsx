@@ -100,21 +100,21 @@ export const projects = [
     blurb:
       '— An immersive relationship transformation journey inspired by Tony Robbins, featuring shared rituals, guided reflections, and real-time partner presence.',
 
-    image: 'https://your-cdn.com/tony-app/tony-collage-preview.png', // replace with your collage
+    image: '/hero-images/date-with-destiny-hero.jpg', // replace with your collage
 
     gradientClass: 'img-container-gradient-tony', // optional custom gradient theme
 
     // ===== LINKS =====
-    liveDemo: 'https://your-tony-app-demo-link.com', // or null if private
+    liveDemo: 'https://date-with-destiny.vercel.app/demo', // or null if private
 
     // ===== QR MODAL =====
-    qr: {
-      phoneImage: 'https://your-cdn.com/tony-app/qr-preview.png', // optional
-      warningTitle: 'Best experienced together 📱',
-      warningText:
-        'This journey is designed for two partners. Scan on your mobile device to enter the shared experience.',
-      skipText: 'continue solo preview',
-    },
+    // qr: {
+    //   phoneImage: 'https://your-cdn.com/tony-app/qr-preview.png', // optional
+    //   warningTitle: 'Best experienced together 📱',
+    //   warningText:
+    //     'This journey is designed for two partners. Scan on your mobile device to enter the shared experience.',
+    //   skipText: 'continue solo preview',
+    // },
 
     // ===== EXPERIENCE / CASE STUDY =====
     experience: [

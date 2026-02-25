@@ -109,7 +109,7 @@ export default function Project({ project, isMobile, close }) {
               <div
                 className="live-demo"
                 onClick={() => {
-                  if (isMobile) {
+                  if (isMobile || !project.qr) {
                     openInNewTab(project.liveDemo);
                   } else {
                     setShowQRCode(true);
