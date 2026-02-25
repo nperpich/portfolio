@@ -15,14 +15,12 @@
     "framer-motion": "^11.3.4",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && node copy.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -43,7 +41,9 @@
     ]
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.4",
     "concurrently": "^7.1.0",
-    "nodemon": "^2.0.16"
+    "nodemon": "^2.0.16",
+    "vite": "^7.3.1"
   }
 }
