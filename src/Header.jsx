@@ -17,7 +17,7 @@ export default function Header({ toggleChat }) {
             // style={{ position: 'relative', top: '35px' }}
           >
             <object
-              data="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/Perpich_Fullstack_1-18-25.pdf"
+              data="/resume_2026.pdf"
               // data="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/Perpich_Fullstack_1208.pdf"
               type="application/pdf"
               width="100%"

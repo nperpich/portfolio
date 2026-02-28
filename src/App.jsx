@@ -477,7 +477,7 @@ function App() {
                 // style={{ position: 'relative', top: '35px' }}
               >
                 <object
-                  data="https://d2qxuoym2zs537.cloudfront.net/forPortfolio/Perpich_Fullstack_1-18-25.pdf"
+                  data="/resume_2026.pdf"
                   type="application/pdf"
                   width="400px"
                   height="620px"
