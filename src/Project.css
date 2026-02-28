@@ -8,12 +8,15 @@
 }
 
 .project-summary {
+  background-color: rgba(17, 21, 43, 0.7);
   width: 40%;
   position: absolute;
   right: 0;
   top: 20px;
   text-align: left;
   z-index: 2;
+  padding: 16px;
+  margin-left: -16px;
 }
 
 .project-summary .title {

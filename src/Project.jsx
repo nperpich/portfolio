@@ -98,27 +98,29 @@ export default function Project({ project, isMobile, close }) {
             </motion.div>
 
             {/* LIVE DEMO CTA */}
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '10px',
-              }}
-            >
+            {project.liveDemo && (
               <div
-                className="live-demo"
-                onClick={() => {
-                  if (isMobile || !project.qr) {
-                    openInNewTab(project.liveDemo);
-                  } else {
-                    setShowQRCode(true);
-                  }
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: '10px',
                 }}
               >
-                LIVE DEMO
+                <div
+                  className="live-demo"
+                  onClick={() => {
+                    if (isMobile || !project.qr) {
+                      openInNewTab(project.liveDemo);
+                    } else {
+                      setShowQRCode(true);
+                    }
+                  }}
+                >
+                  LIVE DEMO
+                </div>
               </div>
-            </div>
+            )}
 
             {/* EXPERIENCE SECTIONS */}
             <div className="experience-collection">

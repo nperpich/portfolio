@@ -194,12 +194,12 @@ export const projects = [
     blurb:
       '— A tourism booking platform for discovering and reserving curated local experiences across Medellín and surrounding regions.',
 
-    image: 'https://your-cdn.com/delmari/delmari-collage-preview.png', // replace with real collage
+    image: '/hero-images/tour-hero.jpg', // replace with real collage
 
     gradientClass: 'img-container-gradient-delmari',
 
     // ===== LINKS =====
-    liveDemo: 'https://www.delmari.tours', // replace if different
+    // liveDemo: 'https://www.delmari.tours', // replace if different
 
     // ===== QR MODAL =====
     qr: {
