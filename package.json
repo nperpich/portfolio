@@ -5,17 +5,23 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@mui/icons-material": "^6.1.1",
-    "@mui/lab": "^6.0.0-beta.10",
-    "@mui/material": "^6.1.1",
+    "@mui/icons-material": "^6.5.0",
+    "@mui/lab": "6.0.1-beta.36",
+    "@mui/material": "^6.5.0",
+    "@react-three/drei": "^10.7.8",
+    "@react-three/fiber": "^9.7.0",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.5.1",
-    "framer-motion": "^11.3.4",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "framer-motion": "^13.2.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.3",
+    "three": "^0.185.1",
     "web-vitals": "^2.1.4"
+  },
+  "overrides": {
+    "three": "^0.185.1"
   },
   "scripts": {
     "start": "vite",
@@ -41,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react": "^5.1.4",
     "concurrently": "^7.1.0",
     "nodemon": "^2.0.16",
