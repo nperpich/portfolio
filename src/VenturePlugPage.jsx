@@ -8,7 +8,7 @@ export default function VenturePlugPage() {
   const [step, setStep] = useState(0);
 
   return (
-    <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+    <div style={{ width: '100%', height: '100dvh', position: 'relative' }}>
       <Canvas>
         <ambientLight intensity={0.6} />
         <directionalLight position={[2, 3, 2]} intensity={1.5} />
