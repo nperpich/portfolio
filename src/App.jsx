@@ -5,7 +5,7 @@ import './App.css';
 import Header from './Header';
 import ChatBox from './ChatBox';
 import Home from './Home';
-import MechanicalEngineer from './MechanicalEngineer';
+import VenturePlugPage from './pages/VenturePlugPage';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -60,7 +60,7 @@ function App() {
           />
           <Route
             path="/mechanical-engineer"
-            element={<MechanicalEngineer />}
+            element={<VenturePlugPage />}
           />
         </Routes>
       </div>
