@@ -78,8 +78,16 @@ export default function VenturePlugPage() {
             onSelect={setSelectedIndex}
           />
         )}
-        <TimedTextOverlay cues={textCues} timelineRef={timelineRef} />
       </DesignStage>
+
+      {/* Plain DOM, not inside the Canvas — cues are keyed to stepIndex, not
+          the model's continuous clock, so no r3f context is needed for the
+          boxes themselves; only the connecting lines read cameraRef. */}
+      <TimedTextOverlay
+        cues={textCues}
+        stepIndex={stepIndex}
+        cameraRef={cameraRef}
+      />
 
       {/* Edit-mode-only DOM overlays live outside the Canvas so they're
           plain CSS `position: absolute` — no drei <Html> behind-camera
@@ -103,7 +111,11 @@ export default function VenturePlugPage() {
         </>
       )}
 
-      <StepControls steps={steps} stepIndex={stepIndex} onChange={setStepIndex} />
+      <StepControls
+        steps={steps}
+        stepIndex={stepIndex}
+        onChange={setStepIndex}
+      />
 
       <button
         onClick={() => setEditMode((v) => !v)}

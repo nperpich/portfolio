@@ -61,18 +61,25 @@ export const flybyPoints = [
   },
 ];
 
+// Each cue is keyed to a step index (not raw time) — it appears when that
+// step becomes active, fades in over fadeDuration, and stays fully visible
+// until you move to a step with no cue in that corner. Up to 4 can be shown
+// at once, one per corner. `lookAt` is optional — a 3D point (same space as
+// flybyPoints) the box draws a line to; omit it for no line.
 // Placeholder — swap in real copy once the timing above is tuned.
 export const textCues = [
   {
+    stepIndex: 0,
+    corner: 'top-left',
     text: 'Single-piece plug body.',
-    start: 0,
-    end: 1.0,
     fadeDuration: 0.3,
+    lookAt: [1.5, 0, 1.5],
   },
   {
+    stepIndex: 1,
+    corner: 'bottom-right',
     text: 'Exploding to show the internal seal.',
-    start: 1.2,
-    end: 2.6,
     fadeDuration: 0.3,
+    lookAt: [0.5, 0.0, 0.3],
   },
 ];
