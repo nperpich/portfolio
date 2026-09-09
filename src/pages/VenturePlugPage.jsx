@@ -45,6 +45,7 @@ export default function VenturePlugPage() {
         height: '100dvh',
         paddingTop: '100px',
         position: 'relative',
+        boxSizing: 'border-box',
       }}
     >
       <DesignStage
