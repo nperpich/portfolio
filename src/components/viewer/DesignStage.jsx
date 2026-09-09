@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import { Bounds, Environment, useGLTF } from '@react-three/drei';
+import { Environment, useGLTF } from '@react-three/drei';
 
 // Grabs the live camera + default controls (OrbitControls, when it's mounted
 // with makeDefault) out to plain refs, so DOM UI *outside* the Canvas — like
@@ -52,11 +52,15 @@ export function DesignStage({
           </>
         )}
 
-        <Suspense fallback={null}>
-          <Bounds fit clip observe margin={1.2}>
-            {children}
-          </Bounds>
-        </Suspense>
+        {/* No <Bounds> here on purpose: it auto-fits the camera whenever its
+            fit/observe deps change, including every time OrbitControls
+            mounts/unmounts (editMode/previewing toggles) — and its fit
+            animation resets controls.target to the model's bounding-box
+            center, silently overriding whatever point you'd actually
+            selected. FlybyCamera and FlybyEditor's snap-on-select now fully
+            own camera positioning, so Bounds is redundant and was actively
+            fighting them for control of the orbit target. */}
+        <Suspense fallback={null}>{children}</Suspense>
 
         <Environment files="/hdri/studio_small_03_1k.hdr" />
       </Canvas>
