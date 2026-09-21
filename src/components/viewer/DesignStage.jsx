@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
 import { Environment, useGLTF } from '@react-three/drei';
+import { ACESFilmicToneMapping } from 'three';
 
 // Grabs the live camera + default controls (OrbitControls, when it's mounted
 // with makeDefault) out to plain refs, so DOM UI *outside* the Canvas — like
@@ -15,6 +16,24 @@ function ContextBridge({ cameraRef, controlsRef }) {
     if (controlsRef) controlsRef.current = controls;
   }, [controls, controlsRef]);
   return null;
+}
+
+// Parented to the camera (not the scene) so the key light always rakes
+// across the model from the same relative angle no matter how you orbit —
+// the gltf-viewer "pop" trick.
+function CameraLight() {
+  const { camera } = useThree();
+  return (
+    <primitive object={camera}>
+      <ambientLight intensity={0.5} />
+      <directionalLight
+        position={[0.5, 0, 0.866]}
+        intensity={1.5}
+        castShadow
+        shadow-radius={8}
+      />
+    </primitive>
+  );
 }
 
 // Reusable 3D staging shell for a design viewer — Canvas, lighting, and
@@ -34,11 +53,14 @@ export function DesignStage({
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-      <Canvas shadows camera={{ position: [3, 2, 3], fov: 45 }}>
-        <color attach="background" args={['#0a1420']} />
+      <Canvas
+        shadows="soft"
+        camera={{ position: [3, 2, 3], fov: 45 }}
+        gl={{ toneMapping: ACESFilmicToneMapping, toneMappingExposure: 0.8 }}
+      >
+        {/* <color attach="background" args={['#0a1420']} /> */}
         <fog attach="fog" args={['#0a1420', 12, 26]} />
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 8, 4]} intensity={1.1} castShadow />
+        <CameraLight />
 
         <ContextBridge cameraRef={cameraRef} controlsRef={controlsRef} />
 
@@ -62,7 +84,7 @@ export function DesignStage({
             fighting them for control of the orbit target. */}
         <Suspense fallback={null}>{children}</Suspense>
 
-        <Environment files="/hdri/studio_small_03_1k.hdr" />
+        {/* <Environment files="/hdri/studio_small_03_1k.hdr" background={false} /> */}
       </Canvas>
     </div>
   );
