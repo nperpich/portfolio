@@ -8,7 +8,6 @@ export function ModelRig({
   steps,
   stepIndex,
   timelineRef,
-  tweenDuration = 1,
   onActionReady,
   ...props
 }) {
@@ -36,13 +35,21 @@ export function ModelRig({
     // No reset() here — reset() snaps time back to 0 as a side effect, so
     // calling it on every step change would restart the clip from scratch
     // instead of tweening from wherever it currently is.
+    //
+    // Duration follows the actual gap between the current and target step
+    // times (1 real second per 1 time unit) — a fixed duration would make
+    // playback speed swing wildly whenever the step times in the config
+    // change, since a bigger time gap would have to be covered in the same
+    // fixed wall-clock time.
+    const targetTime = steps[stepIndex].time;
+    const duration = Math.abs(targetTime - action.time);
     gsap.to(action, {
-      time: steps[stepIndex].time,
-      duration: tweenDuration,
+      time: targetTime,
+      duration,
       ease: 'power1.inOut',
       overwrite: true,
     });
-  }, [stepIndex, actions, names, steps, tweenDuration]);
+  }, [stepIndex, actions, names, steps]);
 
   // The model's AnimationAction.time is the one real clock — write it to the
   // shared ref every frame so FlybyCamera/TimedTextOverlay can read it

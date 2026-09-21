@@ -69,7 +69,7 @@ stable object.
 `stepIndex` (which step button is active) is a separate, low-frequency value
 and is fine as ordinary `useState` — it only changes on click.
 
-*Future note:* if this grows to multiple designs sharing state across one
+_Future note:_ if this grows to multiple designs sharing state across one
 continuous-scroll page, migrate `timelineRef` to a small `zustand` store. The
 read/write API stays nearly identical, so this is a contained swap, not a
 rewrite — no need to add it now.
@@ -77,20 +77,22 @@ rewrite — no need to add it now.
 ## Component specs
 
 ### `DesignStage`
-| Prop | Type | Notes |
-|---|---|---|
-| `modelUrl` | `string` | Path to the `.glb` |
-| `editMode` | `boolean` (default `false`) | Toggles `OrbitControls` + `FlybyEditor` on/off |
-| `children` | `ReactNode` | `ModelRig` + `FlybyCamera`, passed in by the page |
+
+| Prop       | Type                        | Notes                                             |
+| ---------- | --------------------------- | ------------------------------------------------- |
+| `modelUrl` | `string`                    | Path to the `.glb`                                |
+| `editMode` | `boolean` (default `false`) | Toggles `OrbitControls` + `FlybyEditor` on/off    |
+| `children` | `ReactNode`                 | `ModelRig` + `FlybyCamera`, passed in by the page |
 
 ### `ModelRig` (generalized `VenturePlug`)
-| Prop | Type | Notes |
-|---|---|---|
-| `modelUrl` | `string` | |
-| `steps` | `{ label: string, time: number }[]` | Sorted ascending by `time` |
-| `stepIndex` | `number` | Which step to tween toward |
-| `timelineRef` | `MutableRefObject<{ time: number }>` | Written every frame, not read by this component |
-| `tweenDuration` | `number` (default `1`) | Seconds |
+
+| Prop            | Type                                 | Notes                                           |
+| --------------- | ------------------------------------ | ----------------------------------------------- |
+| `modelUrl`      | `string`                             |                                                 |
+| `steps`         | `{ label: string, time: number }[]`  | Sorted ascending by `time`                      |
+| `stepIndex`     | `number`                             | Which step to tween toward                      |
+| `timelineRef`   | `MutableRefObject<{ time: number }>` | Written every frame, not read by this component |
+| `tweenDuration` | `number` (default `1`)               | Seconds                                         |
 
 Preserve exactly: `reset().play()` + `paused = true` runs **once on mount
 only**; on `stepIndex` change, tween `action.time` directly with **no**
@@ -101,26 +103,29 @@ only**; on `stepIndex` change, tween `action.time` directly with **no**
 entirely), so step times can be found by dragging until a pose looks right
 and reading the number off — much faster than guessing a value, saving,
 reloading, and eyeballing repeatedly. This is a separate concern from
-`FlybyEditor`'s camera-point recording (it's finding *model* times, not
-*camera* positions) but lives behind the same `editMode` flag.
+`FlybyEditor`'s camera-point recording (it's finding _model_ times, not
+_camera_ positions) but lives behind the same `editMode` flag.
 
 ### `FlybyCamera`
-| Prop | Type | Notes |
-|---|---|---|
-| `points` | `{ time: number, position: [n,n,n], target: [n,n,n] }[]` | Sorted ascending by `time` |
-| `timelineRef` | `MutableRefObject<{ time: number }>` | Read every frame |
-| `editMode` | `boolean` | When `true`, this component does nothing — `OrbitControls` has the camera |
+
+| Prop          | Type                                                     | Notes                                                                     |
+| ------------- | -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `points`      | `{ time: number, position: [n,n,n], target: [n,n,n] }[]` | Sorted ascending by `time`                                                |
+| `timelineRef` | `MutableRefObject<{ time: number }>`                     | Read every frame                                                          |
+| `editMode`    | `boolean`                                                | When `true`, this component does nothing — `OrbitControls` has the camera |
 
 Interpolation: find the two points bracketing `timelineRef.current.time`,
 linearly interpolate `position` and `target`, apply via `camera.position.set`
-+ `camera.lookAt`. Upgrade to `THREE.CatmullRomCurve3` later if linear looks
-jerky at direction changes with 4+ points — not needed for an MVP with 2-3.
+
+- `camera.lookAt`. Upgrade to `THREE.CatmullRomCurve3` later if linear looks
+  jerky at direction changes with 4+ points — not needed for an MVP with 2-3.
 
 ### `FlybyEditor` (rendered only when `editMode` is true)
-| Prop | Type | Notes |
-|---|---|---|
-| `points` | same shape as above | Controlled |
-| `onChange` | `(points) => void` | Called on add/edit/delete |
+
+| Prop       | Type                | Notes                     |
+| ---------- | ------------------- | ------------------------- |
+| `points`   | same shape as above | Controlled                |
+| `onChange` | `(points) => void`  | Called on add/edit/delete |
 
 UI: a "Record point" button that captures the live `camera.position` and
 `OrbitControls` target plus a timestamp (default: last point's time + 1), and
@@ -130,20 +135,22 @@ delete button per row. Include a "Copy as JSON" button that puts the current
 config file once you're happy with it.
 
 ### `StepControls`
-| Prop | Type | Notes |
-|---|---|---|
-| `steps` | `{ label: string, time: number }[]` | |
-| `stepIndex` | `number` | |
-| `onChange` | `(index: number) => void` | |
+
+| Prop        | Type                                | Notes |
+| ----------- | ----------------------------------- | ----- |
+| `steps`     | `{ label: string, time: number }[]` |       |
+| `stepIndex` | `number`                            |       |
+| `onChange`  | `(index: number) => void`           |       |
 
 Purely presentational — no animation logic, just renders label + prev/next
 buttons and calls `onChange`.
 
 ### `TimedTextOverlay`
-| Prop | Type | Notes |
-|---|---|---|
-| `cues` | `{ text: string, start: number, end: number, fadeDuration?: number }[]` | |
-| `timelineRef` | `MutableRefObject<{ time: number }>` | Read every frame |
+
+| Prop          | Type                                                                    | Notes            |
+| ------------- | ----------------------------------------------------------------------- | ---------------- |
+| `cues`        | `{ text: string, start: number, end: number, fadeDuration?: number }[]` |                  |
+| `timelineRef` | `MutableRefObject<{ time: number }>`                                    | Read every frame |
 
 Implement using drei's `<Html>` so it can live inside the R3F tree and use
 `useFrame` like everything else. Each frame, compute opacity per cue from
@@ -157,21 +164,26 @@ React state — same reasoning as the shared timing model above.
 ```js
 // components/designs/VenturePlug/venturePlug.config.js
 export const steps = [
-  { label: 'Assembled',   time: 0 },
-  { label: 'Exploded',    time: 1.2 },
-  { label: 'Reassembled', time: 2.8 },
-]
+  { label: 'Assembled', time: 0 },
+  { label: 'Exploded', time: 4 },
+  { label: 'Reassembled', time: 8 },
+];
 
 export const flybyPoints = [
-  { time: 0,   position: [0, 0.4, 1.2], target: [0, 0, 0] },
-  { time: 1.2, position: [0.8, 0.6, 0.9], target: [0, 0.1, 0] },
-  { time: 2.8, position: [0, 0.4, 1.2], target: [0, 0, 0] },
-]
+  { time: 0, position: [0, 0.4, 1.2], target: [0, 0, 0] },
+  { time: 4, position: [0.8, 0.6, 0.9], target: [0, 0.1, 0] },
+  { time: 8, position: [0, 0.4, 1.2], target: [0, 0, 0] },
+];
 
 export const textCues = [
-  { text: 'Single-piece plug body.', start: 0,   end: 1.0, fadeDuration: 0.3 },
-  { text: 'Exploding to show the internal seal.', start: 1.2, end: 2.6, fadeDuration: 0.3 },
-]
+  { text: 'Single-piece plug body.', start: 0, end: 4, fadeDuration: 0.3 },
+  {
+    text: 'Exploding to show the internal seal.',
+    start: 4
+    end: 8,
+    fadeDuration: 0.3,
+  },
+];
 ```
 
 ## Known gotchas — do not regress these
@@ -230,7 +242,7 @@ export const textCues = [
 
 - [ ] `editMode={false}` shows only the clean presentation view — no editor UI, no free `OrbitControls`.
 - [ ] `editMode={true}` shows `OrbitControls` + `FlybyEditor`, and the model/text still animate normally underneath.
-- [ ] Clicking a step arrow tweens smoothly from the *current* time to the target step — never snaps back to 0 first.
+- [ ] Clicking a step arrow tweens smoothly from the _current_ time to the target step — never snaps back to 0 first.
 - [ ] Text cues fade in and out at their configured timestamps, synced to the model's actual animation time.
 - [ ] In presentation mode, the camera follows the recorded flyby points, interpolated against the same timeline as the model.
 - [ ] No previously-hardcoded step/camera/text values remain inline in component files — all of it lives in `venturePlug.config.js`.
