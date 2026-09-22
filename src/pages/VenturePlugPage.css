@@ -1,0 +1,39 @@
+/* Desktop: 3D viewer on the left, description panel on the right,
+   overlapping by ~30% of the panel's width with the panel in front.
+   Below the breakpoint (the width where that 30% overlap would need to
+   grow past 30% to keep both boxes on screen) they stack instead. */
+.project-layout {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+}
+
+.project-3d-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  flex-shrink: 0;
+}
+
+.project-text-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin-left: -150px; /* 30% of 500px */
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+@media (max-width: 850px) {
+  .project-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-text-wrap {
+    margin-left: 0;
+    margin-top: 16px;
+  }
+}

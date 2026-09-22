@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
+import './VenturePlugPage.css';
 import { DesignStage } from '../components/viewer/DesignStage';
 import { FlybyCamera } from '../components/viewer/FlybyCamera';
 import { FlybyEditor } from '../components/viewer/FlybyEditor';
@@ -42,87 +43,115 @@ export default function VenturePlugPage() {
     <div
       style={{
         width: '100%',
-        height: '100dvh',
+        minHeight: '100dvh',
         paddingTop: '100px',
-        position: 'relative',
         boxSizing: 'border-box',
       }}
     >
-      <DesignStage
-        modelUrl={modelUrl}
-        editMode={editMode}
-        cameraRef={cameraRef}
-        controlsRef={controlsRef}
-      >
-        <ModelRig
-          modelUrl={modelUrl}
-          steps={steps}
-          stepIndex={stepIndex}
-          timelineRef={timelineRef}
-          onActionReady={setAction}
-        />
-        <FlybyCamera
-          points={points}
-          timelineRef={timelineRef}
-          editMode={editMode}
-          previewing={previewing}
-          previewRef={previewRef}
-        />
-        {/* Unmounted while previewing — otherwise OrbitControls' own
-            per-frame update() would fight FlybyCamera for the camera. */}
-        {editMode && !previewing && <OrbitControls makeDefault />}
-        {editMode && (
-          <PathVisual
-            points={points}
-            selectedIndex={selectedIndex}
-            onSelect={setSelectedIndex}
-          />
-        )}
-      </DesignStage>
-
-      {/* Plain DOM, not inside the Canvas — cues are keyed to stepIndex, not
-          the model's continuous clock, so no r3f context is needed for the
-          boxes themselves; only the connecting lines read cameraRef. */}
-      <TimedTextOverlay
-        cues={textCues}
-        stepIndex={stepIndex}
-        cameraRef={cameraRef}
-      />
-
-      {/* Edit-mode-only DOM overlays live outside the Canvas so they're
-          plain CSS `position: absolute` — no drei <Html> behind-camera
-          check to make them vanish mid-orbit. */}
-      {editMode && (
-        <>
-          <TimeScrubber action={action} />
-          <FlybyScrubber
-            points={points}
-            previewRef={previewRef}
-            setPreviewing={setPreviewing}
-          />
-          <FlybyEditor
-            points={points}
-            onChange={setPoints}
+      <div className="project-layout">
+        <div className="project-3d-wrap">
+          <DesignStage
+            modelUrl={modelUrl}
+            editMode={editMode}
             cameraRef={cameraRef}
             controlsRef={controlsRef}
-            selectedIndex={selectedIndex}
-            setSelectedIndex={setSelectedIndex}
+          >
+            <ModelRig
+              modelUrl={modelUrl}
+              steps={steps}
+              stepIndex={stepIndex}
+              timelineRef={timelineRef}
+              onActionReady={setAction}
+            />
+            <FlybyCamera
+              points={points}
+              timelineRef={timelineRef}
+              editMode={editMode}
+              previewing={previewing}
+              previewRef={previewRef}
+            />
+            {/* Unmounted while previewing — otherwise OrbitControls' own
+                per-frame update() would fight FlybyCamera for the camera. */}
+            {editMode && !previewing && <OrbitControls makeDefault />}
+            {editMode && (
+              <PathVisual
+                points={points}
+                selectedIndex={selectedIndex}
+                onSelect={setSelectedIndex}
+              />
+            )}
+          </DesignStage>
+
+          {/* Plain DOM, not inside the Canvas — cues are keyed to stepIndex,
+              not the model's continuous clock, so no r3f context is needed
+              for the boxes themselves; only the connecting lines read
+              cameraRef. */}
+          <TimedTextOverlay
+            cues={textCues}
+            stepIndex={stepIndex}
+            cameraRef={cameraRef}
           />
-        </>
-      )}
 
-      <StepControls
-        steps={steps}
-        stepIndex={stepIndex}
-        onChange={setStepIndex}
-      />
+          {/* Edit-mode-only DOM overlays live outside the Canvas so they're
+              plain CSS `position: absolute` — no drei <Html> behind-camera
+              check to make them vanish mid-orbit. */}
+          {editMode && (
+            <>
+              <TimeScrubber action={action} />
+              <FlybyScrubber
+                points={points}
+                previewRef={previewRef}
+                setPreviewing={setPreviewing}
+              />
+              <FlybyEditor
+                points={points}
+                onChange={setPoints}
+                cameraRef={cameraRef}
+                controlsRef={controlsRef}
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+              />
+            </>
+          )}
 
-      <button
-        onClick={() => setEditMode((v) => !v)}
-        style={{ position: 'absolute', top: 112, left: 12 }}
-      >
-        {editMode ? 'Edit mode: ON' : 'Edit mode: OFF'}
-      </button>
+          <StepControls
+            steps={steps}
+            stepIndex={stepIndex}
+            onChange={setStepIndex}
+          />
+
+          <button
+            onClick={() => setEditMode((v) => !v)}
+            style={{ position: 'absolute', top: 112, left: 12 }}
+          >
+            {editMode ? 'Edit mode: ON' : 'Edit mode: OFF'}
+          </button>
+        </div>
+
+        <div
+          className="project-text-wrap"
+          style={{
+            background: 'rgba(10, 20, 32, 0.92)',
+            border: '1px solid #1c3a4a',
+            borderRadius: 8,
+            padding: '24px 28px',
+            color: '#cfe8ef',
+            fontFamily: 'sans-serif',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+          }}
+        >
+          <h2 style={{ marginTop: 0 }}>Project Title</h2>
+          <p style={{ lineHeight: 1.6 }}>
+            Placeholder copy describing this project — the problem, the
+            approach, and the outcome. Swap this out for real content once
+            the layout is settled.
+          </p>
+          <p style={{ lineHeight: 1.6 }}>
+            More filler text here so the panel has a realistic amount of
+            content to size against on both desktop and mobile.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

@@ -46,19 +46,20 @@ export const flybyPoints = [
 // at once, one per corner. `lookAt` is optional — a 3D point (same space as
 // flybyPoints) the box draws a line to; omit it for no line.
 // Placeholder — swap in real copy once the timing above is tuned.
-export const textCues = [
-  {
-    stepIndex: 0,
-    corner: 'top-left',
-    text: 'Single-piece plug body.',
-    fadeDuration: 0.3,
-    lookAt: [1.5, 0, 1.5],
-  },
-  {
-    stepIndex: 1,
-    corner: 'bottom-right',
-    text: 'Exploding to show the internal seal.',
-    fadeDuration: 0.3,
-    lookAt: [0.5, 0.0, 0.3],
-  },
-];
+export const textCues = [];
+//   [
+//   {
+//     stepIndex: 0,
+//     corner: 'top-left',
+//     text: 'Single-piece plug body.',
+//     fadeDuration: 0.3,
+//     lookAt: [1.5, 0, 1.5],
+//   },
+//   {
+//     stepIndex: 1,
+//     corner: 'bottom-right',
+//     text: 'Exploding to show the internal seal.',
+//     fadeDuration: 0.3,
+//     lookAt: [0.5, 0.0, 0.3],
+//   },
+// ];

@@ -52,7 +52,15 @@ export function DesignStage({
   }, [modelUrl]);
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div
+      style={{
+        width: '100%',
+        maxHeight: '100%',
+        aspectRatio: '4 / 3',
+        margin: '0 auto',
+        position: 'relative',
+      }}
+    >
       <Canvas
         shadows="soft"
         camera={{ position: [3, 2, 3], fov: 45 }}

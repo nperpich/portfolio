@@ -104,7 +104,11 @@ export function FlybyEditor({
 
   const nudgeSelectedField = (field, axis, delta) => {
     if (selectedIndex === null) return;
-    setSelectedFieldAxis(field, axis, round(points[selectedIndex][field][axis] + delta));
+    setSelectedFieldAxis(
+      field,
+      axis,
+      round(points[selectedIndex][field][axis] + delta),
+    );
   };
 
   const updateTime = (index, time) => {
@@ -127,7 +131,7 @@ export function FlybyEditor({
     <div
       style={{
         position: 'absolute',
-        top: 112,
+        top: 0,
         right: 12,
         display: 'flex',
         flexDirection: 'column',
@@ -209,7 +213,13 @@ export function FlybyEditor({
             paddingTop: 4,
           }}
         >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
             <span style={{ color: '#7fa6b3' }}>#{selectedIndex}</span>
             <select
               value={step}
@@ -226,7 +236,10 @@ export function FlybyEditor({
           </div>
 
           {['position', 'target'].map((field) => (
-            <div key={field} style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <div
+              key={field}
+              style={{ display: 'flex', alignItems: 'center', gap: 3 }}
+            >
               <span style={{ width: 24, color: '#7fa6b3' }}>
                 {field === 'position' ? 'pos' : 'look'}
               </span>
@@ -238,7 +251,11 @@ export function FlybyEditor({
                   title={label}
                   value={selected[field][axis]}
                   onChange={(e) =>
-                    setSelectedFieldAxis(field, axis, parseFloat(e.target.value) || 0)
+                    setSelectedFieldAxis(
+                      field,
+                      axis,
+                      parseFloat(e.target.value) || 0,
+                    )
                   }
                   style={{ width: 40 }}
                 />
