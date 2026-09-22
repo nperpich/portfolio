@@ -1,11 +1,16 @@
-export const modelUrl = '/models/cad_model101.glb';
+export const modelUrl = '/models/cad_model567-optimized.glb';
 
 // Times line up with the "Motion Study 1" clip baked into the .gltf —
 // pulled from the previous hardcoded STEPS start values in VenturePlug.jsx.
 export const steps = [
   { label: 'Assembled', time: 0 },
-  { label: 'Exploded', time: 10 },
-  { label: 'Reassembled', time: 18 },
+  { label: 'Assembled', time: 0.1 },
+  { label: 'Exploded', time: 3 },
+  { label: 'Reassembled', time: 10.5 },
+  { label: 'Reassembled', time: 13 },
+  { label: 'Reassembled', time: 17 },
+  { label: 'Reassembled', time: 21.2 },
+  { label: 'Reassembled', time: 24 },
 ];
 
 // Pulled from the previous orbit-and-capture waypoint editor's tuned shots
@@ -20,47 +25,21 @@ export const steps = [
 // untouched — just spread across the range that's actually reachable.
 export const flybyPoints = [
   {
-    time: 0,
-    position: [2.832, 3.099, 4.625],
-    target: [1.021, 0.35, 1.484],
+    time: 0.5,
+    position: [-1.955, 1.969, 3.503],
+    target: [-0.6, -0.058, 0.55],
   },
   {
-    time: 2,
-    position: [4.735, 2.807, 2.417],
-    target: [1.021, 0.35, 1.484],
-  },
-  {
-    time: 4,
-    position: [3.771, 3.345, -0.559],
-    target: [1.021, 0.35, 1.484],
+    time: 3,
+    position: [1.749, 2.381, 2.338],
+    target: [-0.6, -0.258, 0.55],
   },
   {
     time: 6,
-    position: [2.441, 2.418, -2.313],
-    target: [1.021, 0.35, 1.484],
-  },
-  {
-    time: 8,
-    position: [-1.264, 2.045, -2.068],
-    target: [1.021, 0.35, 1.484],
-  },
-  {
-    time: 10,
-    position: [-3.364, 1.325, 2.215],
-    target: [1.021, 0.35, 1.484],
-  },
-  {
-    time: 12,
-    position: [-1.513, 0.874, 3.329],
-    target: [1.021, 0.35, 1.484],
-  },
-  {
-    time: 14,
-    position: [1.063, 0.601, 3.004],
-    target: [0.499, 0.458, 1.864],
+    position: [1.749, 2.381, 2.338],
+    target: [-0.6, -0.258, 0.55],
   },
 ];
-
 // Each cue is keyed to a step index (not raw time) — it appears when that
 // step becomes active, fades in over fadeDuration, and stays fully visible
 // until you move to a step with no cue in that corner. Up to 4 can be shown

@@ -25,7 +25,7 @@ function CameraLight() {
   const { camera } = useThree();
   return (
     <primitive object={camera}>
-      <ambientLight intensity={0.5} />
+      {/* <ambientLight intensity={0.5} /> */}
       <directionalLight
         position={[0.5, 0, 0.866]}
         intensity={1.5}
@@ -85,6 +85,7 @@ export function DesignStage({
         <Suspense fallback={null}>{children}</Suspense>
 
         {/* <Environment files="/hdri/studio_small_03_1k.hdr" background={false} /> */}
+        <Environment preset="warehouse" background={false} />
       </Canvas>
     </div>
   );
