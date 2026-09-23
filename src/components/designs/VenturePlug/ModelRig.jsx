@@ -8,7 +8,15 @@ import { LoopRepeat } from 'three';
 // model to discrete snapshots. editMode pauses playback (via the paused
 // flag, not stopping the mixer) so FlybyEditor/TimeScrubber can hold the
 // model still at an exact time while tuning a shot.
-export function ModelRig({ modelUrl, editMode, timelineRef, onActionReady, ...props }) {
+export function ModelRig({
+  modelUrl,
+  editMode,
+  loopStartTime = 0,
+  loopEndTime,
+  timelineRef,
+  onActionReady,
+  ...props
+}) {
   const group = useRef();
   const { scene, animations } = useGLTF(modelUrl);
   const { actions, names } = useAnimations(animations, group);
@@ -25,6 +33,13 @@ export function ModelRig({ modelUrl, editMode, timelineRef, onActionReady, ...pr
   useFrame(() => {
     const action = actions[names[0]];
     if (!action) return;
+    // The baked clip can run well past the last labeled step (dead/repeat
+    // motion at the tail) — loop back to loopStartTime as soon as we pass
+    // loopEndTime instead of waiting for the clip's own full duration, so
+    // there's no unlabeled pause before it wraps.
+    if (loopEndTime != null && !editMode && action.time >= loopEndTime) {
+      action.time = loopStartTime;
+    }
     if (timelineRef) timelineRef.current.time = action.time;
     if (!ready.current) {
       ready.current = true;

@@ -15,6 +15,12 @@ export const steps = [
   // { label: 'hand-cssrank', startTime: 13, endTime: 14 },
 ];
 
+// The baked clip is actually 50s long, but nothing after 30s is labeled —
+// loop back to 0 as soon as the playhead passes this instead of playing
+// out the unlabeled tail before wrapping. Update this (and add a matching
+// step above) if you extend the labeled sequence further into the clip.
+export const loopEndTime = 30;
+
 // Pulled from the previous orbit-and-capture waypoint editor's tuned shots
 // for this model (real coordinates, not a generic placeholder) — refine
 // further in editMode with FlybyEditor's "Record point" as needed.

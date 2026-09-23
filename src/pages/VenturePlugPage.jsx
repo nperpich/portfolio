@@ -15,6 +15,7 @@ import {
   steps,
   flybyPoints,
   textCues,
+  loopEndTime,
 } from '../components/designs/VenturePlug/venturePlug.config';
 
 export default function VenturePlugPage() {
@@ -58,6 +59,7 @@ export default function VenturePlugPage() {
             <ModelRig
               modelUrl={modelUrl}
               editMode={editMode}
+              loopEndTime={loopEndTime}
               timelineRef={timelineRef}
               onActionReady={setAction}
             />
@@ -149,22 +151,29 @@ export default function VenturePlugPage() {
             background: 'rgba(10, 20, 32, 0.92)',
             border: '1px solid #1c3a4a',
             borderRadius: 8,
-            padding: '24px 28px',
+            padding: '20px 14px',
             color: '#cfe8ef',
             fontFamily: 'sans-serif',
             boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+            textAlign: 'left',
           }}
         >
-          <h2 style={{ marginTop: 0 }}>Project Title</h2>
+          <h2 style={{ marginTop: 0 }}>Large Custom Shower Former</h2>
           <p style={{ lineHeight: 1.6 }}>
-            Placeholder copy describing this project — the problem, the
-            approach, and the outcome. Swap this out for real content once
-            the layout is settled.
+            A single vacuum former with interchangeable floor inserts, capable
+            of producing showers of any requested size.
           </p>
-          <p style={{ lineHeight: 1.6 }}>
-            More filler text here so the panel has a realistic amount of
-            content to size against on both desktop and mobile.
-          </p>
+          <ul style={{ lineHeight: 1.6, paddingLeft: 20, margin: 0 }}>
+            <li>Reduces vacuum box count from 4+ down to 1</li>
+            <li>Cuts changeover time to under 10 minutes</li>
+            <li>
+              Integrated heaters and quick-change tooling reduce part-to-part
+              cycle time and prevent fixture damage
+            </li>
+            <li>
+              Designed to accommodate electric motors for future automation
+            </li>
+          </ul>
         </div>
       </div>
     </div>
