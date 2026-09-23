@@ -53,11 +53,16 @@ export function DesignStage({
 
   return (
     <div
+      className="design-stage-frame"
       style={{
         width: '100%',
-        maxHeight: '100%',
         aspectRatio: '4 / 3',
-        margin: '0 auto',
+        // Longhand, not the `margin` shorthand — that would also pin
+        // margin-top to 0 inline, and inline styles always beat external
+        // stylesheet rules, silently defeating VenturePlugPage.css's mobile
+        // margin-top override for the sticky-overflow effect.
+        marginLeft: 'auto',
+        marginRight: 'auto',
         position: 'relative',
       }}
     >
@@ -69,9 +74,7 @@ export function DesignStage({
         {/* <color attach="background" args={['#0a1420']} /> */}
         <fog attach="fog" args={['#0a1420', 12, 26]} />
         <CameraLight />
-
         <ContextBridge cameraRef={cameraRef} controlsRef={controlsRef} />
-
         {editMode && (
           <>
             <gridHelper
@@ -81,7 +84,6 @@ export function DesignStage({
             <axesHelper args={[2]} />
           </>
         )}
-
         {/* No <Bounds> here on purpose: it auto-fits the camera whenever its
             fit/observe deps change, including every time OrbitControls
             mounts/unmounts (editMode/previewing toggles) — and its fit
@@ -91,9 +93,9 @@ export function DesignStage({
             own camera positioning, so Bounds is redundant and was actively
             fighting them for control of the orbit target. */}
         <Suspense fallback={null}>{children}</Suspense>
-
         {/* <Environment files="/hdri/studio_small_03_1k.hdr" background={false} /> */}
-        <Environment preset="warehouse" background={false} />
+        {/* <Environment preset="warehouse" background={false} /> */}
+        <Environment preset="city" />
       </Canvas>
     </div>
   );

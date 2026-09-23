@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { activeStepIndex } from './stepTiming';
+import { theme } from './theme';
 
 const CORNERS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 const MARGIN = 24;
@@ -118,7 +119,7 @@ export function TimedTextOverlay({ cues, steps, timelineRef, cameraRef }) {
           <line
             key={corner}
             ref={(el) => (lineRefs.current[corner] = el)}
-            stroke="#4fd1e8"
+            stroke={theme.textMuted}
             strokeWidth={1.5}
             strokeDasharray="4 3"
             opacity={0}
@@ -139,12 +140,12 @@ export function TimedTextOverlay({ cues, steps, timelineRef, cameraRef }) {
               maxWidth: 240,
               opacity: activeCue(corner) ? 1 : 0,
               transition: `opacity ${cue.fadeDuration ?? 0.3}s ease`,
-              background: 'rgba(10, 20, 32, 0.75)',
-              border: '1px solid #1c3a4a',
+              background: theme.panelBg,
+              border: `1px solid ${theme.border}`,
               borderRadius: 6,
               padding: '8px 12px',
-              color: '#cfe8ef',
-              fontFamily: 'sans-serif',
+              color: theme.textSecondary,
+              fontFamily: theme.font,
               fontSize: 13,
               lineHeight: 1.4,
               pointerEvents: 'none',

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import './VenturePlugPage.css';
 import { DesignStage } from '../components/viewer/DesignStage';
@@ -10,6 +10,7 @@ import { StepLabels } from '../components/viewer/StepLabels';
 import { TimedTextOverlay } from '../components/viewer/TimedTextOverlay';
 import { TimeScrubber } from '../components/viewer/TimeScrubber';
 import { ModelRig } from '../components/designs/VenturePlug/ModelRig';
+import { theme } from '../components/viewer/theme';
 import {
   modelUrl,
   steps,
@@ -38,18 +39,37 @@ export default function VenturePlugPage() {
   // because it also has to gate whether <OrbitControls> is mounted below.
   const previewRef = useRef({ time: 0 });
   const [previewing, setPreviewing] = useState(false);
+  // Mobile-only: .project-3d-wrap starts full-size/uncropped and flips into
+  // its clipped, collapsed state once scrolled past a small threshold — a
+  // binary toggle, not a value tied continuously to scroll position, so the
+  // CSS transition on .project-3d-wrap/.design-stage-frame animates it as a
+  // single smooth step rather than scrubbing frame-by-frame with scroll.
+  const [collapsed, setCollapsed] = useState(false);
+  const scrollLayoutRef = useRef(null);
+
+  useEffect(() => {
+    const layoutEl = scrollLayoutRef.current;
+    if (!layoutEl) return;
+    const handleScroll = () => setCollapsed(layoutEl.scrollTop > 5);
+    layoutEl.addEventListener('scroll', handleScroll, { passive: true });
+    return () => layoutEl.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div
       style={{
-        width: '100%',
-        minHeight: '100dvh',
-        paddingTop: '100px',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         boxSizing: 'border-box',
+        background: theme.pageBg,
+        fontFamily: theme.font,
       }}
     >
-      <div className="project-layout">
-        <div className="project-3d-wrap">
+      <div className="project-layout" ref={scrollLayoutRef}>
+        <div className={`project-3d-wrap${collapsed ? ' is-collapsed' : ''}`}>
           <DesignStage
             modelUrl={modelUrl}
             editMode={editMode}
@@ -130,11 +150,9 @@ export default function VenturePlugPage() {
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 6,
-              border: '1px solid #1c3a4a',
-              background: editMode
-                ? 'rgba(79, 209, 232, 0.85)'
-                : 'rgba(10, 20, 32, 0.55)',
-              color: editMode ? '#0a1420' : '#cfe8ef',
+              border: `1px solid ${theme.border}`,
+              background: editMode ? theme.textPrimary : theme.panelBg,
+              color: editMode ? '#ffffff' : theme.textPrimary,
               fontSize: 14,
               lineHeight: 1,
               cursor: 'pointer',
@@ -148,17 +166,74 @@ export default function VenturePlugPage() {
         <div
           className="project-text-wrap"
           style={{
-            background: 'rgba(10, 20, 32, 0.92)',
-            border: '1px solid #1c3a4a',
-            borderRadius: 8,
-            padding: '20px 14px',
-            color: '#cfe8ef',
-            fontFamily: 'sans-serif',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
+            color: theme.textSecondary,
+            fontFamily: theme.font,
             textAlign: 'left',
           }}
         >
-          <h2 style={{ marginTop: 0 }}>Large Custom Shower Former</h2>
+          <h2 style={{ marginTop: 0, color: theme.textPrimary }}>
+            Large Custom Shower Former
+          </h2>
+          <p style={{ lineHeight: 1.6 }}>
+            A single vacuum former with interchangeable floor inserts, capable
+            of producing showers of any requested size.
+          </p>
+          <ul style={{ lineHeight: 1.6, paddingLeft: 20, margin: 0 }}>
+            <li>Reduces vacuum box count from 4+ down to 1</li>
+            <li>Cuts changeover time to under 10 minutes</li>
+            <li>
+              Integrated heaters and quick-change tooling reduce part-to-part
+              cycle time and prevent fixture damage
+            </li>
+            <li>
+              Designed to accommodate electric motors for future automation
+            </li>
+          </ul>
+          <p style={{ lineHeight: 1.6 }}>
+            A single vacuum former with interchangeable floor inserts, capable
+            of producing showers of any requested size.
+          </p>
+          <ul style={{ lineHeight: 1.6, paddingLeft: 20, margin: 0 }}>
+            <li>Reduces vacuum box count from 4+ down to 1</li>
+            <li>Cuts changeover time to under 10 minutes</li>
+            <li>
+              Integrated heaters and quick-change tooling reduce part-to-part
+              cycle time and prevent fixture damage
+            </li>
+            <li>
+              Designed to accommodate electric motors for future automation
+            </li>
+          </ul>
+          <p style={{ lineHeight: 1.6 }}>
+            A single vacuum former with interchangeable floor inserts, capable
+            of producing showers of any requested size.
+          </p>
+          <ul style={{ lineHeight: 1.6, paddingLeft: 20, margin: 0 }}>
+            <li>Reduces vacuum box count from 4+ down to 1</li>
+            <li>Cuts changeover time to under 10 minutes</li>
+            <li>
+              Integrated heaters and quick-change tooling reduce part-to-part
+              cycle time and prevent fixture damage
+            </li>
+            <li>
+              Designed to accommodate electric motors for future automation
+            </li>
+          </ul>
+          <p style={{ lineHeight: 1.6 }}>
+            A single vacuum former with interchangeable floor inserts, capable
+            of producing showers of any requested size.
+          </p>
+          <ul style={{ lineHeight: 1.6, paddingLeft: 20, margin: 0 }}>
+            <li>Reduces vacuum box count from 4+ down to 1</li>
+            <li>Cuts changeover time to under 10 minutes</li>
+            <li>
+              Integrated heaters and quick-change tooling reduce part-to-part
+              cycle time and prevent fixture damage
+            </li>
+            <li>
+              Designed to accommodate electric motors for future automation
+            </li>
+          </ul>
           <p style={{ lineHeight: 1.6 }}>
             A single vacuum former with interchangeable floor inserts, capable
             of producing showers of any requested size.

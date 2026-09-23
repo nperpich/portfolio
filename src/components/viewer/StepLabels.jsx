@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { activeStepIndex } from './stepTiming';
+import { theme } from './theme';
 
 // Step-label list, bottom-left, overlapping the 3D box. The model's clip
 // now plays continuously on a loop — this just reads the live playhead
@@ -34,11 +35,11 @@ export function StepLabels({ steps, timelineRef }) {
         display: 'flex',
         flexDirection: 'column',
         gap: 4,
-        background: 'rgba(10, 20, 32, 0.75)',
-        border: '1px solid #1c3a4a',
+        background: theme.panelBg,
+        border: `1px solid ${theme.border}`,
         borderRadius: 6,
         padding: '10px 14px',
-        fontFamily: 'sans-serif',
+        fontFamily: theme.font,
         fontSize: 13,
         pointerEvents: 'none',
       }}
@@ -47,7 +48,7 @@ export function StepLabels({ steps, timelineRef }) {
         <span
           key={label}
           style={{
-            color: label === activeLabel ? '#ffffff' : '#5c7a87',
+            color: label === activeLabel ? theme.textPrimary : theme.textMuted,
             fontWeight: label === activeLabel ? 600 : 400,
             transition: 'color 0.3s ease, font-weight 0.3s ease',
           }}

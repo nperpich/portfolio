@@ -1,13 +1,19 @@
+/* Light, minimal engineering-portfolio look (modeled after
+   davidsmiller.com's aircraft project pages) — Work Sans is the closest
+   free stand-in for their Proxima Nova. */
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
 /* Desktop: 3D viewer on the left, description panel on the right,
-   overlapping by ~30% of the panel's width with the panel in front.
-   Below the breakpoint (the width where that 30% overlap would need to
-   grow past 30% to keep both boxes on screen) they stack instead. */
+   side by side with no overlap. Below the breakpoint they stack instead. */
 .project-layout {
   display: flex;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  /* stretch (not flex-start) so the text panel takes on the 3D box's
+     height, giving it a bounded height to scroll within on desktop. */
+  align-items: stretch;
   justify-content: center;
-  gap: 0;
+  gap: 32px;
+  height: 100%;
 }
 
 .project-3d-wrap {
@@ -15,27 +21,100 @@
   width: 100%;
   max-width: 500px;
   flex-shrink: 0;
+  /* Clears the fixed header — the page's outer container is pinned flush
+     to the viewport (top: 0), so this offset lives here instead of as a
+     top inset on that container. */
+  margin-top: 100px;
 }
 
 .project-text-wrap {
   position: relative;
   width: 100%;
   max-width: 500px;
-  margin-left: -150px; /* 30% of 500px */
-  z-index: 10;
   box-sizing: border-box;
+  overflow-y: auto;
+  /* Flex items default to min-height: auto, which refuses to shrink below
+     the content's natural height — that silently defeats overflow-y here
+     unless it's reset to 0. */
+  min-height: 0;
+  /* Matches project-3d-wrap's margin-top so both start at the same line
+     in the side-by-side desktop layout. */
+  padding: 120px 14px 20px;
 }
 
 @media (max-width: 850px) {
+  /* .project-layout is the scroll container. .project-3d-wrap is always
+     position: sticky at a fixed top: 100px (a constant, not something
+     computed from the live scroll position) — at rest it's tall enough to
+     show the whole 3D frame uncropped, matching VenturePlugPage's
+     `collapsed` state (toggled once scrollTop passes a small threshold,
+     not continuously as you scroll), which shrinks the slot and clips the
+     oversized frame. Both the slot's height and the frame's offset
+     transition on that class change, so the clip animates in smoothly
+     instead of scrubbing frame-by-frame with scroll. */
   .project-layout {
     flex-direction: column;
     align-items: center;
+    /* The base rule's justify-content: center is for horizontally centering
+       the desktop row pair — in this column direction it centers
+       vertically instead, and since the stacked content is taller than the
+       viewport, that shifts the whole flex line upward by roughly half the
+       overflow amount, corrupting where scrolling starts (a known
+       flexbox + overflow interaction) and making the text render as if it
+       overlapped the 3D component. flex-start stacks from the top instead. */
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .project-3d-wrap {
+    margin: 0;
+    flex-shrink: 0;
+    position: absolute;
+    top: 70px;
+    z-index: 2;
+    background: #f7f7f7;
+    overflow: hidden;
+    height: 400px;
+    transition:
+      height 0.3s ease,
+      top 0.3s ease;
+  }
+
+  .project-3d-wrap.is-collapsed {
+    height: 200px;
+    top: 0;
+  }
+
+  /* The actual 3D frame — see DesignStage.jsx. At rest it exactly fills
+     the (also 400px tall) slot, so nothing's clipped. Collapsed, it's
+     pulled up by 100px so it overflows the now-200px slot symmetrically
+     (100px top and bottom), clipped by the slot's overflow: hidden. */
+  .design-stage-frame {
+    height: 400px;
+    margin-top: 0;
+    transition: margin-top 0.3s ease;
+  }
+
+  .project-3d-wrap.is-collapsed .design-stage-frame {
+    margin-top: -100px;
   }
 
   .project-text-wrap {
     margin-left: 8px;
     margin-right: 8px;
-    margin-top: 16px;
     width: auto;
+    /* Stacked below the 3D box here (margin on the 3D side, padding on the
+       text side — keeping that split consistent instead of mixing both). */
+    padding: 36px 14px 20px;
+    padding-top: 480px;
+    /* Undo the base (desktop) rule's own-internal-scroll setup — flex
+       items shrink by default, and min-height: 0 lets that shrink go all
+       the way to nothing, so without this override .project-layout's
+       fixed height would just crush this panel to fit instead of actually
+       overflowing, and IT would silently do its own internal scroll again
+       instead of .project-layout scrolling as a whole. */
+    overflow-y: visible;
+    min-height: auto;
+    flex-shrink: 0;
   }
 }
