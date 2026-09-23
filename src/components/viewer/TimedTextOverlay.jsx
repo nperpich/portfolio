@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { activeStepIndex } from './stepTiming';
 
 const CORNERS = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
 const MARGIN = 24;
@@ -23,21 +24,36 @@ function boxAnchor(corner, rect) {
 
 // Plain DOM overlay (not drei's <Html>) — same reasoning as FlybyEditor:
 // Html hides itself when its 3D anchor rotates behind the camera, which is
-// wrong for a screen-fixed corner box. Cues are keyed to stepIndex (not the
-// model's continuous clock), so this needs no useFrame/Canvas access at all
-// for the boxes themselves — only the connecting lines need the live camera
-// (via cameraRef, from DesignStage's ContextBridge) to project lookAt
-// points to screen space each frame.
-export function TimedTextOverlay({ cues, stepIndex, cameraRef }) {
+// wrong for a screen-fixed corner box. The model's clip now plays
+// continuously on a loop, so "which step is active" is derived every frame
+// from the live playhead time (timelineRef) against the steps'
+// startTime/endTime ranges, rather than being handed down as a prop.
+export function TimedTextOverlay({ cues, steps, timelineRef, cameraRef }) {
   // The cue currently assigned to each corner, kept even after it stops
   // being "active" so the box can fade out showing its last text instead
   // of going blank instantly.
   const [displayed, setDisplayed] = useState({});
+  const [currentIndex, setCurrentIndex] = useState(-1);
   const boxRefs = useRef({});
   const lineRefs = useRef({});
 
   const activeCue = (corner) =>
-    cues.find((c) => c.corner === corner && c.stepIndex === stepIndex);
+    cues.find((c) => c.corner === corner && c.stepIndex === currentIndex);
+
+  // Lightweight rAF loop purely to detect step-boundary crossings off the
+  // live playhead time — kept separate from the line-projection loop below
+  // so that one doesn't need to restart every time `displayed` changes.
+  useEffect(() => {
+    let raf;
+    const tick = () => {
+      const time = timelineRef?.current?.time ?? 0;
+      const idx = activeStepIndex(steps, time);
+      setCurrentIndex((prev) => (prev === idx ? prev : idx));
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [steps, timelineRef]);
 
   useEffect(() => {
     setDisplayed((prev) => {
@@ -49,7 +65,7 @@ export function TimedTextOverlay({ cues, stepIndex, cameraRef }) {
       return next;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stepIndex, cues]);
+  }, [currentIndex, cues]);
 
   // Projects each visible cue's lookAt point to screen space every frame
   // and updates the SVG line directly (not React state — this runs at
@@ -85,7 +101,7 @@ export function TimedTextOverlay({ cues, stepIndex, cameraRef }) {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [displayed, stepIndex, cues, cameraRef]);
+  }, [displayed, currentIndex, cues, cameraRef]);
 
   return (
     <>

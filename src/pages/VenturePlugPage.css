@@ -33,7 +33,9 @@
   }
 
   .project-text-wrap {
-    margin-left: 0;
+    margin-left: 8px;
+    margin-right: 8px;
     margin-top: 16px;
+    width: auto;
   }
 }

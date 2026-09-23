@@ -6,7 +6,7 @@ import { FlybyCamera } from '../components/viewer/FlybyCamera';
 import { FlybyEditor } from '../components/viewer/FlybyEditor';
 import { FlybyScrubber } from '../components/viewer/FlybyScrubber';
 import { PathVisual } from '../components/viewer/PathVisual';
-import { StepControls } from '../components/viewer/StepControls';
+import { StepLabels } from '../components/viewer/StepLabels';
 import { TimedTextOverlay } from '../components/viewer/TimedTextOverlay';
 import { TimeScrubber } from '../components/viewer/TimeScrubber';
 import { ModelRig } from '../components/designs/VenturePlug/ModelRig';
@@ -18,7 +18,6 @@ import {
 } from '../components/designs/VenturePlug/venturePlug.config';
 
 export default function VenturePlugPage() {
-  const [stepIndex, setStepIndex] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const [points, setPoints] = useState(flybyPoints);
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -58,8 +57,7 @@ export default function VenturePlugPage() {
           >
             <ModelRig
               modelUrl={modelUrl}
-              steps={steps}
-              stepIndex={stepIndex}
+              editMode={editMode}
               timelineRef={timelineRef}
               onActionReady={setAction}
             />
@@ -82,13 +80,14 @@ export default function VenturePlugPage() {
             )}
           </DesignStage>
 
-          {/* Plain DOM, not inside the Canvas — cues are keyed to stepIndex,
-              not the model's continuous clock, so no r3f context is needed
-              for the boxes themselves; only the connecting lines read
-              cameraRef. */}
+          {/* Plain DOM, not inside the Canvas — the active step is derived
+              from timelineRef's live playhead time, so no r3f context is
+              needed for the boxes themselves; only the connecting lines
+              read cameraRef. */}
           <TimedTextOverlay
             cues={textCues}
-            stepIndex={stepIndex}
+            steps={steps}
+            timelineRef={timelineRef}
             cameraRef={cameraRef}
           />
 
@@ -114,17 +113,33 @@ export default function VenturePlugPage() {
             </>
           )}
 
-          <StepControls
-            steps={steps}
-            stepIndex={stepIndex}
-            onChange={setStepIndex}
-          />
+          <StepLabels steps={steps} timelineRef={timelineRef} />
 
           <button
             onClick={() => setEditMode((v) => !v)}
-            style={{ position: 'absolute', top: 112, left: 12 }}
+            title={editMode ? 'Edit mode: ON' : 'Edit mode: OFF'}
+            style={{
+              position: 'absolute',
+              top: 12,
+              left: 12,
+              width: 28,
+              height: 28,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 6,
+              border: '1px solid #1c3a4a',
+              background: editMode
+                ? 'rgba(79, 209, 232, 0.85)'
+                : 'rgba(10, 20, 32, 0.55)',
+              color: editMode ? '#0a1420' : '#cfe8ef',
+              fontSize: 14,
+              lineHeight: 1,
+              cursor: 'pointer',
+              padding: 0,
+            }}
           >
-            {editMode ? 'Edit mode: ON' : 'Edit mode: OFF'}
+            ✎
           </button>
         </div>
 

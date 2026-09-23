@@ -1,16 +1,18 @@
 export const modelUrl = '/models/cad_model567-optimized.glb';
 
-// Times line up with the "Motion Study 1" clip baked into the .gltf —
-// pulled from the previous hardcoded STEPS start values in VenturePlug.jsx.
+// The clip (baked into the .gltf at 30fps) now just plays continuously on a
+// loop instead of being tweened step-to-step. Each entry is a time range
+// (in seconds, matching AnimationAction.time) that labels a segment of that
+// continuous playback — whichever range contains the live playhead time is
+// the active step.
 export const steps = [
-  { label: 'Assembled', time: 0 },
-  { label: 'Assembled', time: 0.1 },
-  { label: 'Exploded', time: 3 },
-  { label: 'Reassembled', time: 10.5 },
-  { label: 'Reassembled', time: 13 },
-  { label: 'Reassembled', time: 17 },
-  { label: 'Reassembled', time: 21.2 },
-  { label: 'Reassembled', time: 24 },
+  // { label: 'rotate', time: 0 },
+  // { label: 'Assemblesadsad', time: 0.1 },
+  { label: 'hand-crank', startTime: 3.5, endTime: 11 },
+  { label: 'adjust side', startTime: 11, endTime: 13 },
+  { label: 'channge floors', startTime: 13, endTime: 22 },
+  { label: 'swap sides', startTime: 24, endTime: 30 },
+  // { label: 'hand-cssrank', startTime: 13, endTime: 14 },
 ];
 
 // Pulled from the previous orbit-and-capture waypoint editor's tuned shots
