@@ -130,9 +130,10 @@ export function FlybyEditor({
   return (
     <div
       style={{
-        position: 'absolute',
+        // position: 'absolute',
+        position: 'relative',
         top: 0,
-        right: 12,
+        right: -24,
         display: 'flex',
         flexDirection: 'column',
         gap: 4,
@@ -144,6 +145,7 @@ export function FlybyEditor({
         color: '#cfe8ef',
         fontSize: 10,
         fontFamily: 'monospace',
+        zIndex: 900,
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>

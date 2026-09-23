@@ -9,7 +9,7 @@ export function TimeScrubber({ action }) {
   return (
     <div
       style={{
-        position: 'absolute',
+        // position: 'absolute',
         top: 156,
         left: 12,
         display: 'flex',

@@ -62,7 +62,7 @@ export function FlybyScrubber({ points, previewRef, setPreviewing }) {
   return (
     <div
       style={{
-        position: 'absolute',
+        // position: 'absolute',
         top: 200,
         left: 12,
         display: 'flex',
