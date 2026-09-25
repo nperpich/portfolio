@@ -70,6 +70,8 @@
     overflow-y: visible;
     min-height: auto;
     flex-shrink: 0;
+
+    padding: 30px 0 20px;
   }
 
   .project-text-content {
