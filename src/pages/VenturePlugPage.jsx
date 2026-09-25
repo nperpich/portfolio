@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import './VenturePlugPage.css';
 import { DesignStage } from '../components/viewer/DesignStage';
@@ -39,21 +39,6 @@ export default function VenturePlugPage() {
   // because it also has to gate whether <OrbitControls> is mounted below.
   const previewRef = useRef({ time: 0 });
   const [previewing, setPreviewing] = useState(false);
-  // Mobile-only: .project-3d-wrap starts full-size/uncropped and flips into
-  // its clipped, collapsed state once scrolled past a small threshold — a
-  // binary toggle, not a value tied continuously to scroll position, so the
-  // CSS transition on .project-3d-wrap/.design-stage-frame animates it as a
-  // single smooth step rather than scrubbing frame-by-frame with scroll.
-  const [collapsed, setCollapsed] = useState(false);
-  const scrollLayoutRef = useRef(null);
-
-  useEffect(() => {
-    const layoutEl = scrollLayoutRef.current;
-    if (!layoutEl) return;
-    const handleScroll = () => setCollapsed(layoutEl.scrollTop > 5);
-    layoutEl.addEventListener('scroll', handleScroll, { passive: true });
-    return () => layoutEl.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div
@@ -68,8 +53,8 @@ export default function VenturePlugPage() {
         fontFamily: theme.font,
       }}
     >
-      <div className="project-layout" ref={scrollLayoutRef}>
-        <div className={`project-3d-wrap${collapsed ? ' is-collapsed' : ''}`}>
+      <div className="project-layout">
+        <div className="project-3d-wrap">
           <DesignStage
             modelUrl={modelUrl}
             editMode={editMode}
@@ -163,8 +148,9 @@ export default function VenturePlugPage() {
           </button>
         </div>
 
+        <div className="project-text-wrap">
         <div
-          className="project-text-wrap"
+          className="project-text-content"
           style={{
             color: theme.textSecondary,
             fontFamily: theme.font,
@@ -249,6 +235,7 @@ export default function VenturePlugPage() {
               Designed to accommodate electric motors for future automation
             </li>
           </ul>
+        </div>
         </div>
       </div>
     </div>

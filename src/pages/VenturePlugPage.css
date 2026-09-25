@@ -43,15 +43,8 @@
 }
 
 @media (max-width: 850px) {
-  /* .project-layout is the scroll container. .project-3d-wrap is always
-     position: sticky at a fixed top: 100px (a constant, not something
-     computed from the live scroll position) — at rest it's tall enough to
-     show the whole 3D frame uncropped, matching VenturePlugPage's
-     `collapsed` state (toggled once scrollTop passes a small threshold,
-     not continuously as you scroll), which shrinks the slot and clips the
-     oversized frame. Both the slot's height and the frame's offset
-     transition on that class change, so the clip animates in smoothly
-     instead of scrubbing frame-by-frame with scroll. */
+  /* Simple stacked layout: one scroll container, 3D component first, text
+     component after, both in normal flow. */
   .project-layout {
     flex-direction: column;
     align-items: center;
@@ -60,61 +53,27 @@
        vertically instead, and since the stacked content is taller than the
        viewport, that shifts the whole flex line upward by roughly half the
        overflow amount, corrupting where scrolling starts (a known
-       flexbox + overflow interaction) and making the text render as if it
-       overlapped the 3D component. flex-start stacks from the top instead. */
+       flexbox + overflow interaction). flex-start stacks from the top
+       instead. */
     justify-content: flex-start;
     overflow-y: auto;
   }
 
   .project-3d-wrap {
-    margin: 0;
     flex-shrink: 0;
-    position: absolute;
-    top: 70px;
-    z-index: 2;
-    background: #f7f7f7;
-    overflow: hidden;
-    height: 400px;
-    transition:
-      height 0.3s ease,
-      top 0.3s ease;
-  }
-
-  .project-3d-wrap.is-collapsed {
-    height: 200px;
-    top: 0;
-  }
-
-  /* The actual 3D frame — see DesignStage.jsx. At rest it exactly fills
-     the (also 400px tall) slot, so nothing's clipped. Collapsed, it's
-     pulled up by 100px so it overflows the now-200px slot symmetrically
-     (100px top and bottom), clipped by the slot's overflow: hidden. */
-  .design-stage-frame {
-    height: 400px;
-    margin-top: 0;
-    transition: margin-top 0.3s ease;
-  }
-
-  .project-3d-wrap.is-collapsed .design-stage-frame {
-    margin-top: -100px;
   }
 
   .project-text-wrap {
-    margin-left: 8px;
-    margin-right: 8px;
-    width: auto;
-    /* Stacked below the 3D box here (margin on the 3D side, padding on the
-       text side — keeping that split consistent instead of mixing both). */
-    padding: 36px 14px 20px;
-    padding-top: 480px;
-    /* Undo the base (desktop) rule's own-internal-scroll setup — flex
-       items shrink by default, and min-height: 0 lets that shrink go all
-       the way to nothing, so without this override .project-layout's
-       fixed height would just crush this panel to fit instead of actually
-       overflowing, and IT would silently do its own internal scroll again
-       instead of .project-layout scrolling as a whole. */
+    /* Reset the desktop base rule's own-internal-scroll setup — only
+       .project-layout (full viewport width) should scroll here, not this
+       narrower, centered box. */
     overflow-y: visible;
     min-height: auto;
     flex-shrink: 0;
+  }
+
+  .project-text-content {
+    padding: 20px 14px 40px;
+    background: #f7f7f7;
   }
 }
