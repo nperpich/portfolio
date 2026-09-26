@@ -29,14 +29,21 @@
 
 .project-text-wrap {
   position: relative;
-  width: 100%;
-  max-width: 500px;
   box-sizing: border-box;
   overflow-y: auto;
   /* Flex items default to min-height: auto, which refuses to shrink below
      the content's natural height — that silently defeats overflow-y here
      unless it's reset to 0. */
   min-height: 0;
+  /* Fills the rest of the row (not capped to a fixed column width) so this
+     scrollable box's right edge — where the scrollbar renders — reaches
+     the actual window edge, not just partway across the page. The
+     comfortable reading width lives on .project-text-content instead. */
+  flex: 1 1 0%;
+}
+
+.project-text-content {
+  max-width: 500px;
   /* Matches project-3d-wrap's margin-top so both start at the same line
      in the side-by-side desktop layout. */
   padding: 120px 14px 20px;
@@ -66,10 +73,14 @@
   .project-text-wrap {
     /* Reset the desktop base rule's own-internal-scroll setup — only
        .project-layout (full viewport width) should scroll here, not this
-       narrower, centered box. */
+       narrower, centered box. Also reset flex: 1 1 0% (desktop uses that to
+       push its scrollbar to the window edge) back to a normal, non-growing
+       stacked column item. */
     overflow-y: visible;
     min-height: auto;
-    flex-shrink: 0;
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 500px;
 
     padding: 30px 0 20px;
   }

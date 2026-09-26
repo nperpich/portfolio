@@ -7,14 +7,20 @@ import { ACESFilmicToneMapping } from 'three';
 // with makeDefault) out to plain refs, so DOM UI *outside* the Canvas — like
 // FlybyEditor's panel — can read them without drei's <Html> occlusion/
 // behind-camera hiding, and without needing its own r3f context.
-function ContextBridge({ cameraRef, controlsRef }) {
-  const { camera, controls } = useThree();
+// captureRef (optional) additionally exposes { gl, scene, camera } for the
+// edit-mode "Capture thumbnail" button, which needs to trigger an
+// off-frame square render.
+function ContextBridge({ cameraRef, controlsRef, captureRef }) {
+  const { camera, controls, gl, scene } = useThree();
   useEffect(() => {
     if (cameraRef) cameraRef.current = camera;
   }, [camera, cameraRef]);
   useEffect(() => {
     if (controlsRef) controlsRef.current = controls;
   }, [controls, controlsRef]);
+  useEffect(() => {
+    if (captureRef) captureRef.current = { gl, scene, camera };
+  }, [captureRef, gl, scene, camera]);
   return null;
 }
 
@@ -45,6 +51,7 @@ export function DesignStage({
   editMode = false,
   cameraRef,
   controlsRef,
+  captureRef,
   children,
 }) {
   useEffect(() => {
@@ -59,8 +66,8 @@ export function DesignStage({
         aspectRatio: '4 / 3',
         // Longhand, not the `margin` shorthand — that would also pin
         // margin-top to 0 inline, and inline styles always beat external
-        // stylesheet rules, silently defeating VenturePlugPage.css's mobile
-        // margin-top override for the sticky-overflow effect.
+        // stylesheet rules, silently defeating any margin-top override
+        // ProjectViewer.css sets on this element's className.
         marginLeft: 'auto',
         marginRight: 'auto',
         position: 'relative',
@@ -74,7 +81,11 @@ export function DesignStage({
         {/* <color attach="background" args={['#0a1420']} /> */}
         <fog attach="fog" args={['#0a1420', 12, 26]} />
         <CameraLight />
-        <ContextBridge cameraRef={cameraRef} controlsRef={controlsRef} />
+        <ContextBridge
+          cameraRef={cameraRef}
+          controlsRef={controlsRef}
+          captureRef={captureRef}
+        />
         {editMode && (
           <>
             <gridHelper

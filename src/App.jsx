@@ -5,7 +5,8 @@ import './App.css';
 import Header from './Header';
 import ChatBox from './ChatBox';
 import Home from './Home';
-import VenturePlugPage from './pages/VenturePlugPage';
+import ProjectPage from './pages/ProjectPage';
+import ProjectsIndexPage from './pages/ProjectsIndexPage';
 import { AnimatePresence } from 'framer-motion';
 
 function App() {
@@ -67,7 +68,12 @@ function App() {
               </>
             }
           />
-          <Route path="/mechanical-engineer" element={<VenturePlugPage />} />
+          <Route
+            path="/mechanical-engineer"
+            element={<ProjectPage slug="venture-plug" />}
+          />
+          <Route path="/projects" element={<ProjectsIndexPage />} />
+          <Route path="/projects/:slug" element={<ProjectPage />} />
         </Routes>
       </div>
     </>

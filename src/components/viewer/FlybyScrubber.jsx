@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 // or playing this moves only the camera, via its own previewRef, so you can
 // check the recorded shot without triggering the explode/reassemble tween.
 // `previewing` is lifted to the page because it also has to gate whether
-// <OrbitControls> is mounted (see VenturePlugPage) — otherwise OrbitControls'
+// <OrbitControls> is mounted (see ProjectViewer) — otherwise OrbitControls'
 // own per-frame update() would fight this for control of the camera.
 export function FlybyScrubber({ points, previewRef, setPreviewing }) {
   const maxTime = points.length ? points[points.length - 1].time : 0;
