@@ -2,11 +2,12 @@
 // second entry. Reuses VenturePlug's model/asset since there's no separate
 // GLB for it yet; swap modelUrl in project.config.js once there is one.
 const meta = {
-  slug: 'quick-change-fixture',
-  title: 'Quick-Change Fixture Plate',
-  impact: { value: '3x', label: 'faster changeover' },
+  slug: 'adjustable-form',
+  title: 'Adjustable Form',
+  impact: { value: '$200k+', label: 'yearly savings' },
   tags: ['Fixturing', 'Automation'],
-  order: 2,
+  order: 1,
+  thumbnail: '/hero-images/components-top.png', // set once a real capture exists
 };
 
 export default meta;

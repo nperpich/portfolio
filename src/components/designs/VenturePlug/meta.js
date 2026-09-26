@@ -6,7 +6,7 @@ const meta = {
   title: 'Large Custom Shower Former',
   impact: { value: '4→1', label: 'vacuum boxes' },
   tags: ['Manufacturing', 'Tooling', 'Automation'],
-  order: 1,
+  order: 2,
   thumbnail: '/hero-images/venture-plug.webp', // set once a real capture exists
 };
 
