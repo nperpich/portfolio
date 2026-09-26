@@ -1,4 +1,4 @@
-const IMG = 'src/components/designs/AjustableForm/media';
+const IMG = '/public/media/AdjustableForm';
 
 // Dummy project — reuses VenturePlug's model/timing as a placeholder so the
 // /projects grid and viewer routing have a second real entry to exercise.

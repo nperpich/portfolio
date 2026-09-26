@@ -7,7 +7,7 @@ const meta = {
   impact: { value: '$200k+', label: 'yearly savings' },
   tags: ['Fixturing', 'Automation'],
   order: 1,
-  thumbnail: '/hero-images/components-top.png', // set once a real capture exists
+  thumbnail: '/hero-images/components-top-rm-bkg.png', // set once a real capture exists
 };
 
 export default meta;

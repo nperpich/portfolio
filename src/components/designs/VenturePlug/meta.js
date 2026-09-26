@@ -7,7 +7,7 @@ const meta = {
   impact: { value: '4→1', label: 'vacuum boxes' },
   tags: ['Manufacturing', 'Tooling', 'Automation'],
   order: 2,
-  thumbnail: '/hero-images/venture-plug.webp', // set once a real capture exists
+  thumbnail: '/hero-images/thumb-from-right-former.png', // set once a real capture exists
 };
 
 export default meta;

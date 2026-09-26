@@ -48,8 +48,9 @@ function ProjectCard({ meta }) {
             width: '100%',
             height: '100%',
             aspectRatio: '1 / 1',
-            objectFit: 'cover',
+            objectFit: 'contain',
             display: 'block',
+            backgroundColor: theme.pageBg,
           }}
         />
       </div>
@@ -92,6 +93,7 @@ export default function ProjectsIndexPage() {
         boxSizing: 'border-box',
         background: theme.pageBg,
         fontFamily: theme.font,
+        overflowY: 'scroll',
       }}
     >
       <div className="project-grid">
