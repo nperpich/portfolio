@@ -33,6 +33,7 @@ main {
 
 .abc {
   position: fixed;
+  top: 100px;
   /* right: 5%; */
 }
 

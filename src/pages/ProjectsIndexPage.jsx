@@ -94,6 +94,7 @@ export default function ProjectsIndexPage() {
         background: theme.pageBg,
         fontFamily: theme.font,
         overflowY: 'scroll',
+        width: '100dvw',
       }}
     >
       <div className="project-grid">
